@@ -1,0 +1,1660 @@
+<div id="mob">
+
+  <!-- Header Navbar Start -->
+  <style>
+      .panel-default > .panel-heading {
+          color: #333;
+          background-color: #f5f5f54d;
+          border-color: #ddd0;
+      }
+    .panel-group {
+        margin-bottom: 0px;
+    }
+    a, a:link, a:visited, a:hover, a:active {
+        color: #fff;
+        text-decoration: none;
+        outline: 0;
+        font-size: 22px;
+    }
+    .panel-heading {
+        padding: 22px 15px;
+        border-bottom: 1px solid transparent;
+        border-top-left-radius: 0px;
+        border-top-right-radius: 0px;
+    }
+    .panel-body p a{
+    font-size: 16px;
+    }
+    </style>
+  
+  
+  
+    <div class="header--nav bg-bluewood">
+      <div class="container">
+          <!-- IF S_REGISTERED_USER -->
+          <!-- EVENT navbar_header_user_profile_prepend -->
+    
+          <div class="header-member-info clearfix">
+              <!-- IF S_NOTIFICATIONS_DISPLAY -->
+              <div class="dropdown header-member--notifications<!-- IF NOTIFICATIONS_COUNT --> has-unread<!-- ENDIF -->">
+                  <a href="#" class="header-member-notifications--toggle" data-toggle="dropdown">
+                      <i class="fa fa-bell"></i>
+                      <!-- IF NOTIFICATIONS_COUNT eq '0' -->
+                      <!-- ELSE -->
+                      <small>{NOTIFICATIONS_COUNT}</small>
+                      <!-- ENDIF -->
+                  </a>
+    
+                  <div class="dropdown-menu">
+                      <div class="dropdown--header clearfix">
+                          <h4>Notifications<!-- IF NOTIFICATIONS_COUNT --><span class="count"> ({NOTIFICATIONS_COUNT})<!-- ENDIF --></span></h4>
+    
+                          <!-- IF NOTIFICATIONS_COUNT -->
+                          <a href="{U_MARK_ALL_NOTIFICATIONS}" data-ajax="notifications.mark_all" class="action mark-all pull-right"><i class="fa fa-check-square-o"></i></a>
+                          <!-- ENDIF -->
+    
+                          <a href="{U_NOTIFICATION_SETTINGS}" class="action pull-right"><i class="fa fa-cog"></i></a>
+                      </div>
+                      <div class="dropdown--body">
+                          <!-- IF not .notifications -->
+                          <p class="no-notification">{L_NO_NOTIFICATIONS}</p>
+                          <!-- ENDIF -->
+                          <!-- BEGIN notifications(0,2) -->
+                          <div class="dropdown-body--notification<!-- IF notifications.UNREAD --> is-unread<!-- ENDIF --> clearfix">
+                              <!-- IF notifications.URL -->
+                              <a class="notification-block clearfix" href="<!-- IF notifications.UNREAD -->{notifications.U_MARK_READ}" data-real-url="{notifications.URL}<!-- ELSE -->{notifications.URL}<!-- ENDIF -->">
+                                  <!-- ENDIF -->
+    
+                                  <!-- IF notifications.AVATAR -->
+                                  {notifications.AVATAR}
+                                  <!-- ELSE -->
+                                  <img src="{T_THEME_PATH}/images/no-avatar.png" alt="" />
+                                  <!-- ENDIF -->
+    
+                                  <div class="dropdown-body-notification--text">
+                                      <p class="notification-title">{notifications.FORMATTED_TITLE}</p>
+                                      <!-- IF notifications.REFERENCE -->
+                                      <p class="notification-reference">{notifications.REFERENCE}</p>
+                                      <!-- ENDIF -->
+                                      <!-- IF notifications.FORUM -->
+                                      <p class="notification-forum">{notifications.FORUM}</p>
+                                      <!-- ENDIF -->
+                                      <!-- IF notifications.REASON -->
+                                      <p class="notification-reason">{notifications.REASON}</p>
+                                      <!-- ENDIF -->
+    
+                                      <p class="notification-time">{notifications.TIME}</p>
+                                  </div>
+    
+                                  <!-- IF notifications.URL -->
+                              </a>
+                              <!-- ENDIF -->
+                          </div>
+                          <!-- END notifications -->
+                          <a href="{U_VIEW_ALL_NOTIFICATIONS}" class="see-all">{L_SEE_ALL}</a>
+                      </div>
+                  </div>
+              </div>
+              <!-- ENDIF -->
+    
+              <!-- IF S_DISPLAY_PM -->
+              <a href="{U_PRIVATEMSGS}" class="msg">
+                  <i class="fa fa-envelope"></i>
+                  <!-- IF PRIVATE_MESSAGE_COUNT eq '0' -->
+                  <!-- ELSE -->
+                  <small>{PRIVATE_MESSAGE_COUNT}</small>
+                  <!-- ENDIF -->
+              </a>
+              <!-- ENDIF -->
+    
+              <div class="dropdown member-profile">
+                  <a href="#" class="member-profile--toggle" data-toggle="dropdown">
+                      <!-- IF CURRENT_USER_AVATAR -->
+                      {CURRENT_USER_AVATAR}
+                      <!-- ELSE -->
+                      <img src="{T_THEME_PATH}/images/no-avatar.png" alt="" class="img-responsive" />
+                      <!-- ENDIF -->
+                      <span class="caret"></span>
+                  </a>
+                  <div class="dropdown-menu header-member-profile--info">
+                      <h4>{S_USERNAME}</h4>
+                      <ul>
+                          <li><a href="{U_PROFILE}"><i class="fa fm fa-dashboard"></i>{L_PROFILE}</a></li>
+                          <li><a href="{U_USER_PROFILE}"><i class="fa fm fa-user"></i>{L_READ_PROFILE}</a></li>
+                          <li><a href="{U_LOGIN_LOGOUT}"><i class="fa fa-flip-horizontal fm fa-sign-out"></i>{L_LOGIN_LOGOUT}</a></li>
+                      </ul>
+                  </div>
+              </div>
+          </div>
+    
+          <!-- EVENT navbar_header_user_profile_append -->
+          <!-- ENDIF -->
+    
+          <!-- IF S_DISPLAY_SEARCH and not S_IN_SEARCH -->
+          <div class="header--search-bar<!-- IF not S_REGISTERED_USER --> logged-out<!-- ENDIF -->">
+              <form action="{U_SEARCH}" method="get">
+                  <div class="input-group">
+                      <input type="text" name="keywords" class="form-control" placeholder="{L_SEARCH_MINI}">
+                      <span class="input-group-btn">
+                          <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                          <a href="{U_SEARCH}" class="btn btn-default"><i class="fa fa-gear"></i></a>
+                      </span>
+                  </div>
+              </form>
+          </div>
+          <!-- ENDIF -->
+    
+          <ul class="header-nav--primary nav<!-- IF not S_REGISTERED_USER --> logged-out<!-- ENDIF -->">
+            
+    
+              
+    
+              <!-- IF U_ACP -->
+              <li class="header-nav-li3"> 
+                  <a href="{U_ACP}"><i class="fa fm fa-gears"></i>{L_ACP_SHORT}</a>
+              </li>
+              <!-- ENDIF -->
+              <!-- IF U_MCP -->
+              <li class="header-nav-li4"><a href="{U_MCP}"><i class="fa fm fa-cog"></i>{L_MCP_SHORT}</a></li>
+              <!-- ENDIF -->
+              <div class="panel-group " id="accordion2">
+                <div class="panel panel-default header-nav-li5" style="text-align: center !important;
+    font-size: 24px !important;">
+                  <div class="panel-heading">
+                    <li><a href="#collapseOne" data-toggle="collapse" style="padding: 26px 15px 24px;" class="accordion-toggle" data-parent="#accordion2"><i class="fa fm fa-navicon"></i>{L_CATEGORIES}</a></li>
+                  </div>
+                  <div id="collapseOne" class="panel-collapse collapse">
+                    <div class="panel-body">
+                      <div class="header-nav--tabpane tab-pane" id="tab2">
+                        <ul class="">
+                             <div class="panel-group" id="accordion">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+                <li><a data-target="#aa" data-toggle="collapse" class="accordion-toggle" data-parent="#accordion" style="font-size: 19px !important;"><i class="fa fa-hand-o-right" aria-hidden="true"></i>&nbsp; commercial hype scams</a></li>
+            </div>
+            <div id="aa" class="panel-collapse collapse">
+              <div class="panel-body">
+                <p><a data-target="viewtopic.php?f=5&t=23647"><i class="fa fa-hand-o-right"></i>&nbsp;As Seen On TV Hype For Products</a></p>
+                <p><a href="viewtopic.php?f=5&t=22982"><i class="fa fa-hand-o-right"></i> &nbsp; Consumer Magazines And Journals</a></p>
+                <p><a href="viewtopic.php?f=5&t=43"><i class="fa fa-hand-o-right"></i>&nbsp;  Deceptive Advertising Agencies & Audience Ratings</a></p>
+                <p><a href="viewtopic.php?f=5&t=42"><i class="fa fa-hand-o-right"></i>&nbsp;  Advertising Logic And The Ethics Of Advertising</a></p>
+                <p><a href="viewtopic.php?f=5&t=41"><i class="fa fa-hand-o-right"></i>&nbsp;  Hypercommercialism And Consumptive Consumer Behavior</a></p>
+                <p><a href="viewtopic.php?f=5&t=40"><i class="fa fa-hand-o-right"></i>&nbsp;  Clinical Study Results And Claims For Products And Services</a></p>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+                <li>
+                    <a data-target="#ab" class="accordion-toggle" data-toggle="collapse" style="font-size: 19px !important;" data-parent="#accordion"><i class="fa fa-hand-o-right" aria-hidden="true"></i>&nbsp; Animal Rights</a></li>
+            </div>
+            <div id="ab" class="panel-collapse collapse">
+              <div class="panel-body">
+                <p><a href="viewtopic.php?f=24&t=55"><i class="fa fa-hand-o-right"></i>&nbsp;  WILD ANIMALS FOR HUMAN ENTERTAINMENT PURPOSES</a></p>
+                <p><a href="viewtopic.php?f=24&t=54"><i class="fa fa-hand-o-right"></i>&nbsp;  Wild Animals Held In Captivity</a></p>
+                <p><a href="viewtopic.php?f=24&t=53"><i class="fa fa-hand-o-right"></i>&nbsp;  Wildlife Conservation Groups</a></p>
+                <p><a href="/viewtopic.php?f=24&t=52"><i class="fa fa-hand-o-right"></i>&nbsp;  Marine Wildlife Parks And Aquariums</a></p>
+                <p><a href="viewtopic.php?f=24&t=51"><i class="fa fa-hand-o-right"></i>&nbsp;  Factory Pig Farming Atrocities Of Greed, Neglect And Inhumane Treatment</a></p>
+                <p><a href="viewtopic.php?f=24&t=50"><i class="fa fa-hand-o-right"></i>&nbsp;  Korean Dog and Cat Meat Eaters</a></p>
+                <p><a href="viewtopic.php?f=24&t=49"><i class="fa fa-hand-o-right"></i>&nbsp;  Hunting On National Wildlife Refuges</a></p>
+                <p><a href="viewtopic.php?f=24&t=48"><i class="fa fa-hand-o-right"></i>&nbsp;  Factory Animal Farm Killers</a></p>
+                <p><a href="viewtopic.php?f=24&t=47"><i class="fa fa-hand-o-right"></i>&nbsp;  Down, Silk And Wool Industries</a></p>
+                <p><a href="viewtopic.php?f=24&t=46"><i class="fa fa-hand-o-right"></i>&nbsp;  Dog and Cat Animal Shelter Gas Chamber</a></p>
+                <p><a href="viewtopic.php?f=24&t=45"><i class="fa fa-hand-o-right"></i>&nbsp;  Dolphins In Captivity</a></p>
+                <p><a href="viewtopic.php?f=24&t=44"><i class="fa fa-hand-o-right"></i>&nbsp;  Discarded Sheep By The Wool Industry</a></p>
+                <p><a href="vviewtopic.php?f=24&t=39"><i class="fa fa-hand-o-right"></i>&nbsp;  Discarded Or Stolen Pets and Animal Baiting</a></p>
+                <p><a href="viewtopic.php?f=24&t=38"><i class="fa fa-hand-o-right"></i>&nbsp;  How Do You Think They Train Bears To Stand Up On Cue?</a></p>
+                <p><a href="viewtopic.php?f=24&t=36"><i class="fa fa-hand-o-right"></i>&nbsp;  China Fur Farms Torture And Supply U.S.A And Canada With Fur</a></p>
+                <p><a href="viewtopic.php?f=24&t=35"><i class="fa fa-hand-o-right"></i>&nbsp;  Commercial Whaling</a></p>
+                <p><a href="viewtopic.php?f=24&t=34"><i class="fa fa-hand-o-right"></i>&nbsp;  Chimpanzees Used In Advertisements</a></p>
+                <p><a href="viewtopic.php?f=24&t=32"><i class="fa fa-hand-o-right"></i>&nbsp;  Animal Testing Products</a></p>
+                <p><a href="viewtopic.php?f=24&t=30"><i class="fa fa-hand-o-right"></i>&nbsp;  Animal Rights Laws and Reality</a></p>
+                <p><a href="viewtopic.php?f=24&t=29"><i class="fa fa-hand-o-right"></i>&nbsp;  A Day In The Life Of A Research Animal</a></p>
+                <p><a href="viewtopic.php?f=24&t=28"><i class="fa fa-hand-o-right"></i>&nbsp;  American Pets Sold To Meat-Eaters</a></p>
+                <p><a href="viewtopic.php?f=24&t=27"><i class="fa fa-hand-o-right"></i>&nbsp;  A Day In The Life Of A Downed Farm Animal Going To Slaughter</a></p>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+                <li class=" "><a data-target="#ac" class="accordion-toggle" data-toggle="collapse" style="font-size: 19px !important;" data-parent="#accordion"><i class="fa fa-hand-o-right" aria-hidden="true"></i>&nbsp; {L_Automotive}</a>
+            </div>
+            <div id="ac" class="panel-collapse collapse">
+              <div class="panel-body">
+                <p><a href="viewtopic.php?f=25&t=24257"><i class="fa fa-hand-o-right"></i>&nbsp;  Exploding Sunroofs On Cars</a></p>
+                <p><a href="viewtopic.php?f=25&t=59"><i class="fa fa-hand-o-right"></i>&nbsp;  “Yo Yo” Car Financing</a></p>
+                <p><a href="viewtopic.php?f=25&t=57"><i class="fa fa-hand-o-right"></i>&nbsp;  Beware Of MSRP Deals On Car Trade-In</a></p>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+                <li class=" "><a data-target="#ad" class="accordion-toggle"  data-toggle="collapse" style="font-size: 19px !important;" data-parent="#accordion"><i class="fa fa-hand-o-right" aria-hidden="true"></i>&nbsp; {L_Economy}</a>
+            </div>
+            <div id="ad" class="panel-collapse collapse">
+              <div class="panel-body">
+                <p><a href="viewtopic.php?f=26&t=23568"><i class="fa fa-hand-o-right"></i>&nbsp;  The Primary Reason Why America Lags Behind Asia In Productivity</a></p>
+                <p><a href="viewtopic.php?f=26&t=68"><i class="fa fa-hand-o-right"></i>&nbsp;  Demise Of The U.S. Dollar</a></p>
+                <p><a href="viewtopic.php?f=26&t=67"><i class="fa fa-hand-o-right"></i>&nbsp;  Warped Meanings Of Words</a></p>
+                <p><a href="viewtopic.php?f=26&t=66"><i class="fa fa-hand-o-right"></i>&nbsp;  America’s Next Financial Crisis And Eventual Cashless Society</a></p>
+                <p><a href="viewtopic.php?f=26&t=65"><i class="fa fa-hand-o-right"></i>&nbsp;  America And The World During The Next 30 Years</a></p>
+                <p><a href="viewtopic.php?f=26&t=64"><i class="fa fa-hand-o-right"></i>&nbsp;  How To Predict The Stock Market</a></p>
+                <p><a href="viewtopic.php?f=26&t=63"><i class="fa fa-hand-o-right"></i>&nbsp;  Identifying Ethically Corrupt Behavior</a></p>
+                <p><a href="viewtopic.php?f=26&t=62"><i class="fa fa-hand-o-right"></i>&nbsp;  Guide To Financially Survive High Prices For Products & Services</a></p>
+                <p><a href="viewtopic.php?f=26&t=61"><i class="fa fa-hand-o-right"></i>&nbsp;  Keynes Law Of Stock Market Illogic</a></p>
+                <p><a href="viewtopic.php?f=26&t=60"><i class="fa fa-hand-o-right"></i>&nbsp;  How To Protect Yourself In Upcoming Public Debt Crisis</a></p>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+                <li class=" "><a data-target="#af" class="accordion-toggle" data-toggle="collapse" style="font-size: 19px !important;" data-parent="#accordion"><i class="fa fa-hand-o-right" aria-hidden="true"></i>&nbsp; {L_Food}</a></li>
+            </div>
+            <div id="af" class="panel-collapse collapse">
+              <div class="panel-body">
+                <p><a href="viewtopic.php?f=28&t=83"><i class="fa fa-hand-o-right"></i>&nbsp;  Dolphin-Safe Labels On Tuna Cans</a></p>
+                <p><a href="viewtopic.php?f=28&t=82"><i class="fa fa-hand-o-right"></i>&nbsp;  Think Twice About Buying Supermarket Meats</a></p>
+                <p><a href="viewtopic.php?f=28&t=80"><i class="fa fa-hand-o-right"></i>&nbsp;  Bottled Water Or Tap Water?</a></p>
+                <p><a href="viewtopic.php?f=28&t=79"><i class="fa fa-hand-o-right"></i>&nbsp;  Deceptive Chicken And Egg Package Label Claims</a></p>
+                <p><a href="viewtopic.php?f=28&t=78"><i class="fa fa-hand-o-right"></i>&nbsp;  More On Deceptive Food Labels</a></p>
+                <p><a href="viewtopic.php?f=28&t=77"><i class="fa fa-hand-o-right"></i>&nbsp;  The Truth About Some Food Labels</a></p>
+                <p><a href="viewtopic.php?f=28&t=76"><i class="fa fa-hand-o-right"></i>&nbsp;  Antibiotics In Farm Animal Food</a></p>
+                <p><a href="viewtopic.php?f=28&t=75"><i class="fa fa-hand-o-right"></i> Meat-Eaters, The Planet And The True Cost Of Consumer Culture</a></p>
+                <p><a href="viewtopic.php?f=28&t=74"><i class="fa fa-hand-o-right"></i>&nbsp;  Deceptive “Nutrition Facts” Labels On Food Packaging</a></p>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+                <li class=" "><a data-target="#ag" class="accordion-toggle" data-toggle="collapse" style="font-size: 19px !important;" data-parent="#accordion"><i class="fa fa-hand-o-right" aria-hidden="true"></i>&nbsp; {L_Gambling}</a></li>
+            </div>
+            <div id="ag" class="panel-collapse collapse">
+              <div class="panel-body">
+                <p><a href="viewtopic.php?f=29&t=85"><i class="fa fa-hand-o-right"></i>&nbsp; Gambling Streaks And Poker Faces</a></p>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+                <li class=" "><a data-target="#ah" class="accordion-toggle" data-toggle="collapse" style="font-size: 19px !important;" data-parent="#accordion"><i class="fa fa-hand-o-right" aria-hidden="true"></i>&nbsp; {L_Government}</a>
+            </div>
+            <div id="ah" class="panel-collapse collapse">
+              <div class="panel-body">
+                <p><a href="viewtopic.php?f=30&t=15&sid=7411b8c8e38a77e4806238ea82ca13d3"><i class="fa fa-hand-o-right"></i> &nbsp; Liberal President And Liberal Congress Do Not Want Full Employment</a></p>
+                <p><a href="viewtopic.php?f=30&t=14&sid=7411b8c8e38a77e4806238ea82ca13d3"><i class="fa fa-hand-o-right"></i>&nbsp;  Congressional “Gag Rule”</a></p>
+                <p><a href="viewtopic.php?f=30&t=13&sid=7411b8c8e38a77e4806238ea82ca13d3"><i class="fa fa-hand-o-right"></i>&nbsp;  Tax The Wealthy And The Death Of Politics</a></p>
+                <p><a href="viewtopic.php?f=30&t=12&sid=7411b8c8e38a77e4806238ea82ca13d3"><i class="fa fa-hand-o-right"></i>&nbsp;  Unofficial History Of American Corporations</a></p>
+                <p><a href="viewtopic.php?f=30&t=11&sid=7411b8c8e38a77e4806238ea82ca13d3"><i class="fa fa-hand-o-right"></i> &nbsp; California…The Largest Insane Asylum In The USA!</a></p>
+                <p><a href="viewtopic.php?f=30&t=10&sid=7411b8c8e38a77e4806238ea82ca13d3"><i class="fa fa-hand-o-right"></i>&nbsp;  Realistic Politics, Government, Banking, Jobs, Public Safety And Security</a></p>
+                <p><a href="viewtopic.php?f=30&t=9&sid=7411b8c8e38a77e4806238ea82ca13d3"><i class="fa fa-hand-o-right"></i>&nbsp;  Commercial Whaling</a></p>
+                <p><a href="viewtopic.php?f=30&t=8&sid=7411b8c8e38a77e4806238ea82ca13d3"><i class="fa fa-hand-o-right"></i>&nbsp;  Politicians And American Politics</a></p>
+                <p><a href="viewtopic.php?f=30&t=7&sid=7411b8c8e38a77e4806238ea82ca13d3"><i class="fa fa-hand-o-right"></i>&nbsp;  Presidential Debates</a></p>
+                <p><a href="viewtopic.php?f=30&t=5&sid=7411b8c8e38a77e4806238ea82ca13d3"><i class="fa fa-hand-o-right"></i>&nbsp;  Government Stealing Your Cash From Your Bank Account</a></p>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+                <li class=" "><a data-target="#ai" class="accordion-toggle" data-toggle="collapse" style="font-size: 19px !important;" data-parent="#accordion"><i class="fa fa-hand-o-right" aria-hidden="true"></i>&nbsp; Law Crime and Justice</a></li>
+            </div>
+            <div id="ai" class="panel-collapse collapse">
+              <div class="panel-body">
+                <p><a href="./viewtopic.php?f=31&t=23571"><i class="fa fa-hand-o-right"></i>&nbsp;  Cohabitation Property Rights</a></p>
+                <p><a href="./viewtopic.php?f=31&t=23567"><i class="fa fa-hand-o-right"></i>&nbsp; Prevent-A-Foreclosure Attorney Services</a></p>
+                <p><a href="./viewtopic.php?f=31&t=23566"><i class="fa fa-hand-o-right"></i>&nbsp;  Bullying In Schools</a></p>
+                <p><a href="./viewtopic.php?f=31&t=23564"><i class="fa fa-hand-o-right"></i>&nbsp;  New Way To Vote To Change Washington Politics</a></p>
+                <p><a href="./viewtopic.php?f=31&t=23558"><i class="fa fa-hand-o-right"></i>&nbsp;  Good and Bad Attorneys And Bill Padding</a></p>
+                <p><a href="./viewtopic.php?f=31&t=23553"><i class="fa fa-hand-o-right"></i>&nbsp;  Gun Control And Anti-Gun Violence Programs Will Not Work</a></p>
+                <p><a href="./viewtopic.php?f=31&t=23549"><i class="fa fa-hand-o-right"></i>&nbsp;  Gun Show Loophole And Arming Mexican Drug Cartels</a></p>
+                <p><a href="./viewtopic.php?f=31&t=23548"><i class="fa fa-hand-o-right"></i>&nbsp;  When You Write Your Will Do Not Forget This!</a></p>
+                <p><a href="./viewtopic.php?f=31&t=23547"><i class="fa fa-hand-o-right"></i>&nbsp;  Death Penalty Advocacy</a></p>
+                <p><a href="./viewtopic.php?f=31&t=23546"><i class="fa fa-hand-o-right"></i> &nbsp; Keynes Law Of Stock Market Illogic</a></p>
+                <p><a href="./viewtopic.php?f=31&t=23545"><i class="fa fa-hand-o-right"></i>&nbsp;  Simple Way To Stop Backpack Bombings And Car Bombings</a></p>
+                <p><a href="./viewtopic.php?f=31&t=23544"><i class="fa fa-hand-o-right"></i>&nbsp;  Cohabitation Property Rights</a></p>
+                <p><a href="./viewtopic.php?f=31&t=23543"><i class="fa fa-hand-o-right"></i>&nbsp;  S.L.A.P.P., Frivolous And Class Action Lawsuits</a></p>
+                <p><a href="./viewtopic.php?f=31&t=23542"><i class="fa fa-hand-o-right"></i>&nbsp;  Gun Laws, Corruption And Terrorists</a></p>
+                <p><a href="./viewtopic.php?f=31&t=23541"><i class="fa fa-hand-o-right"></i>&nbsp;  Unofficial History Of American Corporations</a></p>
+                <p><a href="./viewtopic.php?f=31&t=23540"><i class="fa fa-hand-o-right"></i>&nbsp;  Tax The Wealthy And The Death Of Politics</a></p>
+                <p><a href="./viewtopic.php?f=31&t=23539"><i class="fa fa-hand-o-right"></i>&nbsp;  Small Claims Court Judgments</a></p>
+                <p><a href="./viewtopic.php?f=31&t=23537"><i class="fa fa-hand-o-right"></i>&nbsp;  Leaderless Terrorism And Terrorist Acts</a></p>
+                <p><a href="./viewtopic.php?f=31&t=23537"><i class="fa fa-hand-o-right"></i>&nbsp;  “Don’t Buck The Jack” Car Jacking, Purse Snatching & Muggings</a></p>
+                <p><a href="./viewtopic.php?f=31&t=23534"><i class="fa fa-hand-o-right"></i>&nbsp;  How To Get A Cop Faster When You Call 911</a></p>
+                <p><a href="./viewtopic.php?f=31&t=23533"><i class="fa fa-hand-o-right"></i>&nbsp;  Personal Injury Attorneys</a></p>
+                <p><a href="./viewtopic.php?f=31&t=23532"><i class="fa fa-hand-o-right"></i>&nbsp;  Hiring An Attorney</a></p>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+                <li class=" "><a data-target="#aj" class="accordion-toggle" data-toggle="collapse" style="font-size: 19px !important;" data-parent="#accordion"><i class="fa fa-hand-o-right" aria-hidden="true"></i>&nbsp; {L_Medical}</a></li>
+            </div>
+            <div id="aj" class="panel-collapse collapse">
+              <div class="panel-body">
+                <p><a href="./viewtopic.php?f=32&t=115"><i class="fa fa-hand-o-right"></i>&nbsp;  You Thought You Had Health Care Insurance Coverage</a></p>
+                <p><a href="./viewtopic.php?f=32&t=113"><i class="fa fa-hand-o-right"></i>&nbsp;  When To Schedule Surgery</a></p>
+                <p><a href="./viewtopic.php?f=32&t=112"><i class="fa fa-hand-o-right"></i>&nbsp;  Surgeon Attitude While Performing Surgery</a></p>
+                <p><a href="./viewtopic.php?f=32&t=110"><i class="fa fa-hand-o-right"></i>&nbsp;  Summertime Hospital Surgery</a></p>
+                <p><a href="./viewtopic.php?f=32&t=109"><i class="fa fa-hand-o-right"></i>&nbsp;  Risky Dental X-Rays</a></p>
+                <p><a href="./viewtopic.php?f=32&t=107"><i class="fa fa-hand-o-right"></i>&nbsp;  Sudden Death Heart Attacks</a></p>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+                <li class=" "><a data-target="#ak" class="accordion-toggle" data-toggle="collapse" style="font-size: 19px !important;" data-parent="#accordion"><i class="fa fa-hand-o-right" aria-hidden="true"></i>&nbsp; News Media</a></li>
+            </div>
+            <div id="ak" class="panel-collapse collapse">
+              <div class="panel-body">
+                <p><a href="./viewtopic.php?f=33&t=124"><i class="fa fa-hand-o-right"></i>&nbsp; News Media Secret Statistical Language</a></p>
+                <p><a href="./viewtopic.php?f=33&t=123"><i class="fa fa-hand-o-right"></i>&nbsp;  TV News Interviewers And Interviews</a></p>
+                <p><a href="./viewtopic.php?f=33&t=122"><i class="fa fa-hand-o-right"></i>&nbsp;  Planted News Quotes And How To Respond To A Reporter’s Questions</a></p>
+                <p><a href="./viewtopic.php?f=33&t=120"><i class="fa fa-hand-o-right"></i>&nbsp;  Selective Sampling</a></p>
+                <p><a href="./viewtopic.php?f=33&t=119"><i class="fa fa-hand-o-right"></i>&nbsp;  What’s Really Wrong With The TV News Media</a></p>
+                <p><a href="./viewtopic.php?f=33&t=118"><i class="fa fa-hand-o-right"></i>&nbsp;  The New Mainstream Journalism And News Media In America</a></p>
+                <p><a href="./viewtopic.php?f=33&t=116"><i class="fa fa-hand-o-right"></i>&nbsp;  Why We Hate The News Media</a></p>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+                <li class=" "><a data-target="#al" class="accordion-toggle" data-toggle="collapse" style="font-size: 19px !important;" data-parent="#accordion"><i class="fa fa-hand-o-right" aria-hidden="true"></i>{L_Products}</a></li>
+            </div>
+            <div id="al" class="panel-collapse collapse">
+              <div class="panel-body">
+                <p><a href="./viewtopic.php?f=34&t=24256"><i class="fa fa-hand-o-right"></i>&nbsp; Getting Your Best Discounts Online</a></p>
+                <p><a href="./viewtopic.php?f=34&t=23565"><i class="fa fa-hand-o-right"></i>&nbsp;  Buying Gold And Gold Coins From Advertisements</a></p>
+                <p><a href="./viewtopic.php?f=34&t=128"><i class="fa fa-hand-o-right"></i>&nbsp;  Made In America Can Actually Mean Made In China</a></p>
+                <p><a href="./viewtopic.php?f=34&t=127"><i class="fa fa-hand-o-right"></i>&nbsp;  What Does “Sell By” And “Use By” Dates Really Mean?</a></p>
+                <p><a href="./viewtopic.php?f=34&t=126"><i class="fa fa-hand-o-right"></i>&nbsp;  What Does “Sell By” And “Use By” Dates Really Mean?What Does “Sell By” And “Use By” Dates Really Mean?a</a></p>
+                <p><a href="./viewtopic.php?f=34&t=125"><i class="fa fa-hand-o-right"></i>&nbsp;  Negotiating A Deal On A Mattress</a></p>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+                <li class=" "><a data-target="#am" class="accordion-toggle" data-toggle="collapse" style="font-size: 19px !important;" data-parent="#accordion"><i class="fa fa-hand-o-right" aria-hidden="true"></i>&nbsp; {L_Science}</a></li>
+            </div>
+            <div id="am" class="panel-collapse collapse">
+              <div class="panel-body">
+                <p><a href="./viewtopic.php?f=35&t=137"><i class="fa fa-hand-o-right"></i> &nbsp; Statistical Truth Test</a></p>
+                <p><a href="./viewtopic.php?f=35&t=136"><i class="fa fa-hand-o-right"></i>&nbsp;  False Random Samples</a></p>
+                <p><a href="./viewtopic.php?f=35&t=135"><i class="fa fa-hand-o-right"></i>&nbsp;  “The Missing Link” From Monkey To Man</a></p>
+                <p><a href="./viewtopic.php?f=35&t=134"><i class="fa fa-hand-o-right"></i>&nbsp;  Facts</a></p>
+                <p><a href="./viewtopic.php?f=35&t=133"><i class="fa fa-hand-o-right"></i>&nbsp;  Scientists Betrayers Of Truth</a></p>
+                <p><a href="./viewtopic.php?f=35&t=132"><i class="fa fa-hand-o-right"></i>&nbsp;  Animal Suffering In The Name Of Science</a></p>
+                <p><a href="./viewtopic.php?f=35&t=131"><i class="fa fa-hand-o-right"></i>&nbsp;  Mysticism, Scientific Publishing And Myths Of Darwinism</a></p>
+                <p><a href="./viewtopic.php?f=35&t=130"><i class="fa fa-hand-o-right"></i>&nbsp;  Secret Statistical Language And Statistics Lie And Liars Use Statistics</a></p>
+                <p><a href="./viewtopic.php?f=35&t=129"><i class="fa fa-hand-o-right"></i>&nbsp;  The New Age Of Faith In Science</a></p>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+                <li class=" "><a data-target="#an" class="accordion-toggle" data-toggle="collapse" style="font-size: 19px !important;" data-parent="#accordion"><i class="fa fa-hand-o-right" aria-hidden="true"></i>&nbsp; {L_Services}</a></li>
+            </div>
+            <div id="an" class="panel-collapse collapse">
+              <div class="panel-body">
+                <p><a href="./viewtopic.php?f=36&t=23645"><i class="fa fa-hand-o-right"></i>&nbsp;  Signing A Contract To Join A Church</a></p>
+                <p><a href="./viewtopic.php?f=36&t=23643"><i class="fa fa-hand-o-right"></i>&nbsp;  Fundraising Charities</a></p>
+                <p><a href="./viewtopic.php?f=36&t=143"><i class="fa fa-hand-o-right"></i>&nbsp;  Should You Contribute Money To Finance An Idea?</a></p>
+                <p><a href="./viewtopic.php?f=36&t=142"><i class="fa fa-hand-o-right"></i>&nbsp;  The Big Business Of Funerals And Death Cares</a></p>
+                <p><a href="./viewtopic.php?f=36&t=141"><i class="fa fa-hand-o-right"></i>&nbsp;  When You Write Your Will Do Not Forget This!</a></p>
+                <p><a href="./viewtopic.php?f=36&t=140"><i class="fa fa-hand-o-right"></i>&nbsp;  TV Home Shopping Channels</a></p>
+                <p><a href="./viewtopic.php?f=36&t=139"><i class="fa fa-hand-o-right"></i>&nbsp;  Pet Pedigrees</a></p>
+                <p><a href="./viewtopic.php?f=36&t=138"><i class="fa fa-hand-o-right"></i>&nbsp;  Jewelry Switch</a></p>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+                <li class=" "><a class="accordion-toggle" data-target="#ao" data-toggle="collapse" style="font-size: 19px !important;" data-parent="#accordion"><i class="fa fa-hand-o-right" aria-hidden="true"></i>&nbsp; Society and Culture</a></li>
+            </div>
+            <div id="ao" class="panel-collapse collapse">
+              <div class="panel-body">
+                <p><a href="./viewtopic.php?f=37&t=23646"><i class="fa fa-hand-o-right"></i>&nbsp; Identifying Ethically Corrupt Behavior</a></p>
+                <p><a href="./viewtopic.php?f=37&t=23644"><i class="fa fa-hand-o-right"></i>&nbsp;  Stupidity</a></p>
+                <p><a href="./viewtopic.php?f=37&t=23569"><i class="fa fa-hand-o-right"></i>&nbsp;  Culture Jamming And The American Commercial Consumer Culture</a></p>
+                <p><a href="./viewtopic.php?f=37&t=175"><i class="fa fa-hand-o-right"></i>&nbsp;  Western Logic And “Fuzzy” Eastern Logic</a></p>
+                <p><a href="./viewtopic.php?f=37&t=174"><i class="fa fa-hand-o-right"></i>&nbsp;  The Alphabet</a></p>
+                <p><a href="./viewtopic.php?f=37&t=173"><i class="fa fa-hand-o-right"></i>&nbsp;  Those Who Rant And Rave</a></p>
+                <p><a href="./viewtopic.php?f=37&t=172"><i class="fa fa-hand-o-right"></i>&nbsp;  Thinking In The Past</a></p>
+                <p><a href="./viewtopic.php?f=37&t=171"><i class="fa fa-hand-o-right"></i>&nbsp;  Theories Of Knowledge</a></p>
+                <p><a href="./viewtopic.php?f=37&t=170"><i class="fa fa-hand-o-right"></i>&nbsp;  Animal Protection Intellectualism</a></p>
+                <p><a href="./viewtopic.php?f=37&t=169"><i class="fa fa-hand-o-right"></i>&nbsp;  Sub-Human Nature</a></p>
+                <p><a href="./viewtopic.php?f=37&t=168"><i class="fa fa-hand-o-right"></i>&nbsp;  The American Dream And Progress</a></p>
+                <p><a href="./viewtopic.php?f=37&t=167"><i class="fa fa-hand-o-right"></i>&nbsp;  Reality Creation</a></p>
+                <p><a href="./viewtopic.php?f=37&t=166"><i class="fa fa-hand-o-right"></i>&nbsp;  Selfishness And Revolutionaries</a></p>
+                <p><a href="./viewtopic.php?f=37&t=165"><i class="fa fa-hand-o-right"></i>&nbsp;  Spiritual Resistance, Activism And The Law</a></p>
+                <p><a href="./viewtopic.php?f=37&t=164"><i class="fa fa-hand-o-right"></i>&nbsp;  Rational Thought And Reason</a></p>
+                <p><a href="./viewtopic.php?f=37&t=163"><i class="fa fa-hand-o-right"></i>&nbsp;  In Your Face Quotes</a></p>
+                <p><a href="./viewtopic.php?f=37&t=162"><i class="fa fa-hand-o-right"></i>&nbsp;  Public Ignorance And Leadership</a></p>
+                <p><a href="./viewtopic.php?f=37&t=161"><i class="fa fa-hand-o-right"></i>&nbsp;  Radical Honesty</a></p>
+                <p><a href="./viewtopic.php?f=37&t=160"><i class="fa fa-hand-o-right"></i>&nbsp;  Moral Decision Making</a></p>
+                <p><a href="./viewtopic.php?f=37&t=159"><i class="fa fa-hand-o-right"></i>&nbsp;  Intoxication And The Psychedelic Mind</a></p>
+                <p><a href="./viewtopic.php?f=37&t=158"><i class="fa fa-hand-o-right"></i>&nbsp;  Making A Fair Judgment</a></p>
+                <p><a href="./viewtopic.php?f=37&t=157"><i class="fa fa-hand-o-right"></i>&nbsp;  Experience Used As An Argument</a></p>
+                <p><a href="./viewtopic.php?f=37&t=155"><i class="fa fa-hand-o-right"></i>&nbsp;  Evolution Of Our Mind</a></p>
+                <p><a href="./viewtopic.php?f=37&t=154"><i class="fa fa-hand-o-right"></i>&nbsp;  Example Or Exception</a></p>
+                <p><a href="./viewtopic.php?f=37&t=153"><i class="fa fa-hand-o-right"></i>&nbsp;  “Rock” Logic And Political Bombast</a></p>
+                <p><a href="./viewtopic.php?f=37&t=152"><i class="fa fa-hand-o-right"></i>&nbsp;  Where America’s Two Most Infamous Curse Words Come From ?</a></p>
+                <p><a href="./viewtopic.php?f=37&t=150"><i class="fa fa-hand-o-right"></i>&nbsp;  Recency Bias In The World Of Psychology And Economics</a></p>
+                <p><a href="./viewtopic.php?f=37&t=148"><i class="fa fa-hand-o-right"></i>&nbsp;  History, Truth, Reality And Logic</a></p>
+                <p><a href="./viewtopic.php?f=37&t=147"><i class="fa fa-hand-o-right"></i> 
+                Free Speech, Death Of Discourse And The New Tyranny In America</a></p>
+                <p><a href="./viewtopic.php?f=37&t=146"><i class="fa fa-hand-o-right"></i>&nbsp;  Winning Trust To Influence People</a></p>
+                <p><a href="./viewtopic.php?f=37&t=145"><i class="fa fa-hand-o-right"></i>&nbsp;  Mushrooms, History And Peace Of Mind</a></p>
+                <p><a href="./viewtopic.php?f=37&t=144"><i class="fa fa-hand-o-right"></i>&nbsp;  The Future, The Year 3000 And Extinction</a></p>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+                <li class=" "><a class="accordion-toggle" data-target="#ap" data-toggle="collapse" style="font-size: 19px !important;" data-parent="#accordion"><i class="fa fa-hand-o-right" aria-hidden="true"></i>&nbsp; {L_Sports}</a></li>
+            </div>
+            <div id="ap" class="panel-collapse collapse">
+              <div class="panel-body">
+                <p><a href="./viewtopic.php?f=38&t=183"><i class="fa fa-hand-o-right"></i> &nbsp; Instant Replays On TV</a></p>
+                <p><a href="./viewtopic.php?f=38&t=182"><i class="fa fa-hand-o-right"></i>&nbsp;  Rigged Horse Racing</a></p>
+                <p><a href="./viewtopic.php?f=38&t=181"><i class="fa fa-hand-o-right"></i>&nbsp;  Swimming Pool And Spa Drain Equipment</a></p>
+                <p><a href="./viewtopic.php?f=38&t=180"><i class="fa fa-hand-o-right"></i>&nbsp;  Greyhound Racing And Greyhound Adoption Organizations</a></p>
+                <p><a href="./viewtopic.php?f=38&t=179"><i class="fa fa-hand-o-right"></i>&nbsp;  Horse Mafia</a></p>
+                <p><a href="./viewtopic.php?f=38&t=177"><i class="fa fa-hand-o-right"></i>&nbsp;  Exotic Wild Animal Canned Hunt Farms</a></p>
+                <p><a href="./viewtopic.php?f=38&t=176"><i class="fa fa-hand-o-right"></i> &nbsp; Sick And Dying Soccer Players</a></p>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+                <li class=" "><a class="accordion-toggle" data-target="#aq" data-toggle="collapse" style="font-size: 19px !important;" data-parent="#accordion"><i class="fa fa-hand-o-right" aria-hidden="true"></i>&nbsp; The Environment</a></li>
+            </div>
+            <div id="aq" class="panel-collapse collapse">
+              <div class="panel-body">
+                <p><a href="./viewtopic.php?f=39&t=23563"><i class="fa fa-hand-o-right"></i>&nbsp;  Techno-Slavery, Brain Hang And Commercial Consumption</a></p>
+                <p><a href="./viewtopic.php?f=39&t=23562"><i class="fa fa-hand-o-right"></i>&nbsp;  Extinction Of Mankind And All Species</a></p>
+                <p><a href="./viewtopic.php?f=39&t=23561"><i class="fa fa-hand-o-right"></i>&nbsp;  Democracy And Deconstruction Of Earth</a></p>
+                <p><a href="./viewtopic.php?f=39&t=23560"><i class="fa fa-hand-o-right"></i>&nbsp;  The Earth's Revenge</a></p>
+                <p><a href="./viewtopic.php?f=39&t=23559"><i class="fa fa-hand-o-right"></i>&nbsp;  Overfishing, By-Catch And Shark Attacks</a></p>
+                <p><a href="./viewtopic.php?f=39&t=23557"><i class="fa fa-hand-o-right"></i>&nbsp;  Longline Fishing Weapons Of Destruction And Commercial Fishing</a></p>
+                <p><a href="./viewtopic.php?f=39&t=23556"><i class="fa fa-hand-o-right"></i>&nbsp; Government Sponsored Wild Animal Kills</a></p>
+                <p><a href="./viewtopic.php?f=39&t=23555"><i class="fa fa-hand-o-right"></i>&nbsp;  Dolphin And Whale Slaughter Tourist Attraction</a></p>
+                <p><a href="./viewtopic.php?f=39&t=23554"><i class="fa fa-hand-o-right"></i>&nbsp;  Commercial Whaling</a></p>
+                <p><a href="./viewtopic.php?f=39&t=23552"><i class="fa fa-hand-o-right"></i>&nbsp;  Marijuana Cultivation And The Impact On The Environment</a></p>
+                <p><a href="./viewtopic.php?f=39&t=23551"><i class="fa fa-hand-o-right"></i>&nbsp;  I Have A Dream For Facebook And The Next Big Thing In Social Networking</a></p>
+                <p><a href="./viewtopic.php?f=39&t=23550"><i class="fa fa-hand-o-right"></i>&nbsp;  American Consumers Treated Like Lab Rats For Toxic Chemicals</a></p>
+                <p><a href="./viewtopic.php?f=39&t=23536"><i class="fa fa-hand-o-right"></i>&nbsp;  The Future, The Year 3000 And Extinction</a></p>
+                <p><a href="./viewtopic.php?f=39&t=23535"><i class="fa fa-hand-o-right"></i>&nbsp;  Meat-Eaters, the Planet and the True Cost of Consumer Culture</a></p>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+                <li class=" "><a data-target="#ar" class="accordion-toggle" data-toggle="collapse" style="font-size: 19px !important;" data-parent="#accordion"><i class="fa fa-hand-o-right" aria-hidden="true"></i>&nbsp; {L_Travel}</a></li>
+              </h4>
+            </div>
+            <div id="ar" class="panel-collapse collapse">
+              <div class="panel-body">
+                <p><a href="./viewtopic.php?f=40&t=196"><i class="fa fa-hand-o-right"></i>&nbsp;  Beware Of Rental Car Companies</a></p>
+                <p><a href="./viewtopic.php?f=40&t=195"><i class="fa fa-hand-o-right"></i>&nbsp;  Confessions By Airline Baggage Handlers</a></p>
+                <p><a href="./viewtopic.php?f=40&t=194"><i class="fa fa-hand-o-right"></i>&nbsp;  Beware Of Hotel Room Safes</a></p>
+              </div>
+            </div>
+          </div> 
+        </div>
+                        </ul>
+                    </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="panel panel-default" style="text-align: center !important;
+    font-size: 24px !important;">
+                  <div class="panel-heading">
+                    <li> <a href="#collapseTwo" class="accordion-toggle" data-toggle="collapse" style="padding: 26px 15px 24px;" data-parent="#accordion2"><i class="fa fm fa-navicon"></i>Change Everything</a></li>
+                  </div>
+                  <div id="collapseTwo" class="panel-collapse collapse">
+                    <div class="panel-body">
+                      <div class="header-nav--tabpane tab-pane" id="tab3">
+                        <ul class="nav">
+                            <div class="panel-group" id="accordion1">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+                <li><a data-target="#a1" class="accordion-toggle" data-toggle="collapse" style="font-size: 19px !important;" data-parent="#accordion1"><i class="fa fa-hand-o-right" aria-hidden="true"></i>&nbsp; CHANGE THE ENVIRONMENT AND FUTURE OF PLANET</a></li>
+            </div>
+            <div id="a1" class="panel-collapse collapse">
+              <div class="panel-body">
+                <p><a href="./viewtopic.php?f=42&t=29134"><i class="fa fa-hand-o-right"></i>&nbsp;  Disposable Plastics, Dirty Coal And Electric Car Pollution</a></p>
+                <p><a href="./viewtopic.php?f=42&t=14755"><i class="fa fa-hand-o-right"></i>&nbsp;  LONGLINE FISHING WEAPONS OF DESTRUCTION AND COMMERCIAL FISHING</a></p>
+                <p><a href="./viewtopic.php?f=42&t=14753"><i class="fa fa-hand-o-right"></i>&nbsp;  EXTINCTION OF MANKIND AND ALL SPECIES</a></p>
+                <p><a href="./viewtopic.php?f=42&t=14752"><i class="fa fa-hand-o-right"></i>&nbsp;  THE EARTH’S REVENGE</a></p>
+                <p><a href="./viewtopic.php?f=42&t=14751"><i class="fa fa-hand-o-right"></i>&nbsp;  The Future, The Year 3000 And Extinction</a></p>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+                <li><a data-target="#a2" class="accordion-toggle" data-toggle="collapse" style="font-size: 19px !important;" data-parent="#accordion1"><i class="fa fa-hand-o-right" aria-hidden="true"></i>&nbsp; CHANGE SOCIETY AND CULTURE</a></li>
+            </div>
+            <div id="a2" class="panel-collapse collapse">
+              <div class="panel-body">
+                <p><a href="./viewtopic.php?f=45&t=29143"><i class="fa fa-hand-o-right"></i>&nbsp;  Observations By Independent Thinker Gore Vidal</a></p>
+                <p><a href="./viewtopic.php?f=45&t=29141"><i class="fa fa-hand-o-right"></i>&nbsp;  The Political Correctness Movement</a></p>
+                <p><a href="./viewtopic.php?f=45&t=29140"><i class="fa fa-hand-o-right"></i>&nbsp;  Hi-Tech Hijacked Your Mind: A Vulnerability In Human Psychology</a></p>
+                <p><a href="./viewtopic.php?f=45&t=29137"><i class="fa fa-hand-o-right"></i>&nbsp;  What Your Mind Instinctively Begs For</a></p>
+                <p><a href="./viewtopic.php?f=45&t=29135"><i class="fa fa-hand-o-right"></i>&nbsp;  Words Of Wisdom From World’s First Billionaire</a></p>
+        
+                <p><a href="./viewtopic.php?f=45&t=23966"><i class="fa fa-hand-o-right"></i>&nbsp;  Threat Of Artificial Intelligence</a></p>
+                <p><a href="./viewtopic.php?f=45&t=14750"><i class="fa fa-hand-o-right"></i>&nbsp;  I HAVE A DREAM FOR FACEBOOK AND THE NEXT BIG THING IN SOCIAL NETWORKING</a></p>
+                <p><a href="./viewtopic.php?f=45&t=14749"><i class="fa fa-hand-o-right"></i>&nbsp;  TECHNO-SLAVERY, BRAIN HANG AND COMMERCIAL CONSUMPTION</a></p>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+                <li><a data-target="#a3" class="accordion-toggle" data-toggle="collapse" style="font-size: 19px !important;" data-parent="#accordion1"><i class="fa fa-hand-o-right" aria-hidden="true"></i>&nbsp; CHANGE POLITICS</a></li>
+            </div>
+            <div id="a3" class="panel-collapse collapse">
+              <div class="panel-body">
+                <p><a href="./viewtopic.php?f=47&t=29147"><i class="fa fa-hand-o-right"></i>&nbsp;  President Abe Lincoln, The Popular Vote, Slavery And Income Inequality</a></p>
+                <p><a href="./viewtopic.php?f=47&t=29139"><i class="fa fa-hand-o-right"></i>&nbsp;  2000 Years Ago They Predicted Democracy Could Not Survive</a></p>
+                <p><a href="./viewtopic.php?f=47&t=29136"><i class="fa fa-hand-o-right"></i>&nbsp;  Political Parties, Populism And Honor</a></p>
+                <p><a href="./viewtopic.php?f=47&t=14746"><i class="fa fa-hand-o-right"></i>&nbsp;  New Way To Vote To Change Washington Politics</a></p>
+        
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+                <li><a data-target="#a4" class="accordion-toggle" data-toggle="collapse" style="font-size: 19px !important;" data-parent="#accordion1"><i class="fa fa-hand-o-right" aria-hidden="true"></i>&nbsp; CHANGE LAW AND ORDER</a></li>
+            </div>
+            <div id="a4" class="panel-collapse collapse">
+              <div class="panel-body">
+                <p><a href="./viewtopic.php?f=49&t=29138"><i class="fa fa-hand-o-right"></i>&nbsp;  Do Not Sign “Confession Of Judgment” When Getting A Loan</a></p>
+                <p><a href="./viewtopic.php?f=49&t=14756"><i class="fa fa-hand-o-right"></i>&nbsp;  GUN CONTROL AND ANTI-GUN VIOLENCE PROGRAMS WILL NOT WORK</a></p>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+                <li><a data-target="#a5" class="accordion-toggle" data-toggle="collapse" style="font-size: 19px !important;" data-parent="#accordion1"><i class="fa fa-hand-o-right"></i>&nbsp; CHANGE GOVERNMENT</a></li>
+            </div>
+            <div id="a5" class="panel-collapse collapse">
+              <div class="panel-body">
+                <p><a href="./viewtopic.php?f=51&t=29146"><i class="fa fa-hand-o-right"></i>&nbsp;  Government Regulation Of Social Media And Technology World Domination</a></p>
+                <p><a href="./viewtopic.php?f=51&t=29142"><i class="fa fa-hand-o-right"></i>&nbsp;  The Poor Masses In America Vs. The Rich Elite And Economic Collapse</a></p>
+                <p><a href="./viewtopic.php?f=51&t=23960"><i class="fa fa-hand-o-right"></i>&nbsp;  Dark Crimes Of The Deep State Politics Of Power</a></p>
+                <p><a href="./viewtopic.php?f=51&t=23959"><i class="fa fa-hand-o-right"></i>&nbsp;  This $5 Trillion Time Bomb Will Devastate Americans</a></p>
+                <p><a href="./viewtopic.php?f=51&t=14748"><i class="fa fa-hand-o-right"></i>&nbsp;  STEALING THE VOTES</a></p>
+        
+                <p><a href="./viewtopic.php?f=51&t=14747"><i class="fa fa-hand-o-right"></i>&nbsp;  What Every US Citizen Should Know</a></p>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+                <li >
+                    <a data-target="#a6" title="{L_FAQ_EXPLAIN}" class="accordion-toggle" style="font-size: 19px !important;" data-toggle="collapse" data-parent="#accordion1"><i class="fa fa-hand-o-right" aria-hidden="true"></i>CHANGE OTHER</a></li>
+             
+            </div>
+            <div id="a6" class="panel-collapse collapse">
+              <div class="panel-body">
+                <p><a href="./viewtopic.php?f=53&t=29145"><i class="fa fa-hand-o-right"></i>&nbsp;  Why Don’t News Media Journalists Ask Really Tough Questions?</a></p>
+                <p><a href="./viewtopic.php?f=53&t=29144"><i class="fa fa-hand-o-right"></i>&nbsp;  Online Price Discrimination Charging More For Products Based On Who You Are</a></p>
+                <p><a href="./viewtopic.php?f=53&t=14757"><i class="fa fa-hand-o-right"></i>&nbsp;  “DON’T BUCK THE JACK” CAR JACKING & PURSE SNATCHING</a></p>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+                            <li style="display:none;"><a href="{U_TEAM}"><i class="fa fm fa-users"></i>THE TEAM</a></li>
+                        </ul>
+                    </div>
+                    </div>
+                  </div>
+                </div>
+                
+              </div>
+                <li class="header-nav-li7">
+                    <a href="#tab4" class="scroll-class" data-toggle="tab"><i class="fa fm fa-navicon"></i>ABOUT THE BOOK</a>
+                </li>
+                <li class="header-nav-li1" style="background: #797979"><a href="{U_ABOUT}"><i class="fa fm fa-cog"></i>ABOUT US</a></li>
+                <li class="header-nav-li1"><a href="./contactus.php"><i class="fa fm fa-cog"></i>CONTACT</a></li>
+              </div>
+          </ul>
+      </div>
+    
+      <div class="header-nav--tab">
+          <div class="container">
+              <div class="tab-content">
+                  <div class="header-nav--tabpane tab-pane" id="tab1">
+                      <ul class="nav">
+                          <!-- EVENT navbar_header_quick_links_before -->
+    
+                          <!-- IF S_DISPLAY_SEARCH -->
+    <!--                         IF S_USER_LOGGED_IN 
+                          <li><a href="{U_SEARCH_NEW}"><i class="fa fm fa-folder-o"></i>{L_SEARCH_NEW}</a></li>
+                           ENDIF 
+                           IF S_REGISTERED_USER 
+                          <li><a href="{U_SEARCH_SELF}"><i class="fa fm fa-edit"></i>{L_SEARCH_SELF}</a></li>
+                           ENDIF 
+                           IF S_LOAD_UNREADS  
+                          <li><a href="{U_SEARCH_UNREAD}"><i class="fa fm fa-eye-slash"></i>{L_SEARCH_UNREAD}</a></li>
+                           ENDIF 
+                          <li><a href="{U_SEARCH_UNANSWERED}"><i class="fa fm fa-comment-o"></i>{L_SEARCH_UNANSWERED}</a></li>
+                          <li><a href="{U_SEARCH_ACTIVE_TOPICS}"><i class="fa fa-hand-o-right"></i>{L_SEARCH_ACTIVE_TOPICS}</a></li>
+                          <li><a href="{U_SEARCH}"><i class="fa fm fa-search"></i>{L_SEARCH}</a></li>
+                           ENDIF 
+    
+                          <li class="hidden-md hidden-lg IF SCRIPT_NAME eq 'faq'  active ENDIF ">
+                              <a href="{U_FAQ}" title="{L_FAQ_EXPLAIN}"><i class="fa fm fa-question-circle"></i>{L_FAQ}</a>
+                          </li>
+    
+                           IF U_TEAM 
+                          <li ><a href="{U_TEAM}"><i class="fa fm fa-users"></i>{L_THE_TEAM}</a></li>-->
+                          <!-- ENDIF -->
+    
+                          <!-- EVENT navbar_header_quick_links_after -->
+                      </ul>
+                  </div>
+    
+                  
+    
+    
+                 
+    
+                  <div class="header-nav--tabpane tab-pane" id="tab4">
+                      <ul class="nav">
+                          <li>
+                              <div class="claim-text">
+                                  Stop the Scams. Buy Your Book Now.<br />
+                                  Whistleblowers Book Of 1001 Secrets...Consumer News You Can Use
+                              </div>
+                              <div id="scroll-destination">
+                              <img src="http://demo.digitaldreamstech.com/freeway/phpBB3/styles/forumus/theme/images/51ohG-f2vuL.jpg">
+                              </div>
+    
+                              <div class="book-text">
+                              <div>  Available for all major eBook readers:</div>
+                              <ul class="books-links">
+                                  <li><a href="http://www.amazon.com/Whistleblowers-Book-1001-Secrets-ebook/dp/B004RPTEX8" target="_blank">Amazon Kindle</a><br></li>
+                                  <li><a href="http://search.barnesandnoble.com/Whistleblowers-Book-of-1001-Secrets/Glenn-Cole/e/2940012242433" target="_blank">Barnes &amp; Noble Nook</a><br></li>
+                                  <li><a href="http://ebookstore.sony.com/ebook/glenn-cole/whistleblowers-book-of-1001-secrets/_/R-400000000000000362424" target="_blank">Sony ebookstore</a><br></li>
+                                  <li><a href="https://www.smashwords.com/books/view/34911" target="_blank">Smashwords</a> for Epub, LRF (Sony), Kindle, PDB, PDF, and more<br></li>
+                                  <li><a href="http://itunes.apple.com/us/book/whistleblowers-book-1001-secrets/id428420017?mt=11&amp;ls=1" target="_blank">Apple iTunes/iBooks<br></a> </li>
+                              </ul>
+                            <br>
+    <br>
+    <br>
+    <p style="text-align: center;"></p>
+    <p style="text-align: center;"></p>
+    <p style="text-align: center;">Protect Yourself, Your Money &amp; Your Family from Con Artists and Scammers</p>
+    <p style="text-align: center;">Whistleblowers Book of 1001 Secrets: Consumer News You Can Use (Second Edition)</p>
+    <p style="text-align: center;">Insider Book tells you how to Protect Yourself and STOP THE SCAMS.</p>
+    <p style="text-align: center;">Covers over 1,000 SCAMS</p>
+    <p style="text-align: center;">CLEAR, EASY-to-understand</p>
+    <p style="text-align: center;">Sourced info, not just opinions</p>
+    <p style="text-align: center;">Alphabetical, easy-to-find info</p>
+    <p style="text-align: center;">Consumer SCAMS, Services CONS, Health, Home and Job RIPOFFS</p>
+    <p style="text-align: center;">STOP the SCAMS in:</p>
+    <p style="text-align: center;">More than 1001 Whistleblowers Secrets in all !</p>
+    <p style="text-align: center;">1986 NASA Challenger Disaster “Final Minutes Of Life” Cockpit Audio</p>
+    <p style="text-align: center;">Overfishing, Bycatch and Shark Attacks</p>
+    <p style="text-align: center;">Reality TV Game Show Deceptions</p>
+    <p style="text-align: center;">Stop The ScamsEarth on Edge</p>
+    <p style="text-align: center;">Pharmacy Technicians</p>
+    <p style="text-align: center;">Revolution of 1776 and the Next Revolution</p>
+    <p style="text-align: center;">Fitness Instructors</p>
+    <p style="text-align: center;">Exercise Myths</p>
+    <p style="text-align: center;">The Presidency, War and Calculated Chaos</p>
+    <p style="text-align: center;">Gambling Win Systems</p>
+    <p style="text-align: center;">Funeral Homes Stealing Body Parts for Re-Sale</p>
+    <p style="text-align: center;">Food Slander Laws</p>
+    <p style="text-align: center;">Insider Wall Street Stock Trading</p>
+    <p style="text-align: center;">Free Speech?</p>
+    <p style="text-align: center;">Hackers Cracking Car Key Codes</p>
+    <p style="text-align: center;">Saline Breast Implants</p>
+    <p style="text-align: center;">Surgery Code of Silence</p>
+    <p style="text-align: center;">Laser Surgery</p>
+    <p style="text-align: center;">Lasik Eye Surgery</p>
+    <p style="text-align: center;">Police Dirty Tricks</p>
+    <p style="text-align: center;">Boat Ownership</p>
+    <p style="text-align: center;">Crooked Veterinarians</p>
+    <p style="text-align: center;">TV News Managers and Management</p>
+    <p style="text-align: center;">TV Culture and Democracy</p>
+    <p style="text-align: center;">TV News Interviewers and Interviews</p>
+    <p style="text-align: center;">Toxic TV News Media in a Toxic Society</p>
+    <p style="text-align: center;">Myth of Objectivity in the News Media and Journalism</p>
+    <p style="text-align: center;">TV News “Exclusive” News Stories</p>
+    <p style="text-align: center;">Planted News Media Quotes and News Stories</p>
+    <p style="text-align: center;">TV News: the Unreality Industry</p>
+    <p style="text-align: center;">Myths of Darwinism</p>
+    <p style="text-align: center;">Death of Reality</p>
+    <p style="text-align: center;">The Human Brain</p>
+    <p style="text-align: center;">Scamming Yourself and the Illusion of Fact</p>
+    <p style="text-align: center;">Reality Creation</p>
+    <p style="text-align: center;">We’re being led like cows to slaughter</p>
+    <p style="text-align: center;">Myth of Sexual Peak</p>
+    <p style="text-align: center;">Theories of Knowledge</p>
+    <p style="text-align: center;">Truth in America</p>
+    <p style="text-align: center;">Thinking in the Past</p>
+    <p style="text-align: center;">Wicked People</p>
+    <p style="text-align: center;">Fake Board-Certified Physicians</p>
+    <p style="text-align: center;">Hospital Newborns</p>
+    <p style="text-align: center;">Medical Interns</p>
+    <p style="text-align: center;">Psychiatric Hospitals</p>
+    <p style="text-align: center;">Whale and Dolphin Laundering</p>
+    <p style="text-align: center;">Suicide Horse Races</p>
+    <p style="text-align: center;">Pet Cremations</p>
+    <p style="text-align: center;">Horse Mafia</p>
+    <p style="text-align: center;">Fishing Rodeos</p>
+    <p style="text-align: center;">Dolphins in Captivity</p>
+    <p style="text-align: center;">Circus Animal Abuse</p>
+    <p style="text-align: center;">Bear Baiting</p>
+    <p style="text-align: center;">Carriage Horse Rides</p>
+    <p style="text-align: center;">Commercial Trawler Fish Nets</p>
+    <p style="text-align: center;">Discarded and Stolen Pets and Animal Baiting</p>
+    <p style="text-align: center;">Buy Until You Die</p>
+    <p style="text-align: center;">Car Dealer Dirty Tricks</p>
+    <p style="text-align: center;">Expiration Dates for New Car Tires</p>
+    <p style="text-align: center;">Different Grades of Gas and Gas Stations</p>
+    <p style="text-align: center;">Imitation Replacement Auto Body Parts</p>
+    <p style="text-align: center;">Re-built and Re-sold Wrecked Cars</p>
+    <p style="text-align: center;">Nursing Home Sex Predators</p>
+    <p style="text-align: center;">Park and Rob Valets</p>
+    <p style="text-align: center;">Rape and Rape Investigations</p>
+    <p style="text-align: center;">Traffic Ticket Attorneys</p>
+    <p style="text-align: center;">Presidential Debates</p>
+    <p style="text-align: center;">Diplomatic Immunity</p>
+    <p style="text-align: center;">Critical Care Nurses</p>
+    <p style="text-align: center;">Emergency Room Medical Sub-Contractors</p>
+    <p style="text-align: center;">Congressional “Gag Rule”</p>
+    <p style="text-align: center;">Arbitration Clauses in Contracts</p>
+    <p style="text-align: center;">Insurance Sales Tactics</p>
+    <p style="text-align: center;">Home Remodeling Contractors</p>
+    <p style="text-align: center;">U.S. Government Withholding Tax</p>
+    <p style="text-align: center;">Forgotten Founders of America</p>
+    <p style="text-align: center;">The South Will Rise Again</p>
+    <p style="text-align: center;">Ambulance Medical Emergencies</p>
+    <p style="text-align: center;">Movie Theatre Popcorn</p>
+    <p style="text-align: center;">Street Food Vendors</p>
+    <p style="text-align: center;">U.S. Embassies</p>
+    <p style="text-align: center;">U.S. Federal Safety Standards</p>
+    <p style="text-align: center;">U.S. Meat Inspection and Inspectors</p>
+    <p style="text-align: center;">Light Beers</p>
+    <p style="text-align: center;">Juice Drink Frauds</p>
+    <p style="text-align: center;">Hamburger Hell</p>
+    <p style="text-align: center;">Grocery Store “Cons”</p>
+    <p style="text-align: center;">Distinguished College Professors</p>
+    <p style="text-align: center;">School Overcrowding</p>
+    <p style="text-align: center;">School Security Guards</p>
+    <p style="text-align: center;">Wall Street Investor Pitfalls</p>
+    <p style="text-align: center;">Helicopter Pilots</p>
+    <p style="text-align: center;">Commercial Airline Pilot Fatigue</p>
+    <p style="text-align: center;">Air Traffic Controllers and Drug Use</p>
+    <p style="text-align: center;">Your First Name Determines Your Success</p>
+    <p style="text-align: center;">Cruise Ship Crime</p>
+    <p style="text-align: center;">Tour Operators and Tour Bus Drivers</p>
+    <p style="text-align: center;">Unsafe Charter Buses</p>
+    <p style="text-align: center;">Parasailing Tourists</p>
+    <p style="text-align: center;">Female Models Targeted for Sex Slave Trade</p>
+    <p style="text-align: center;">Felons and Ex-Convicts doing In-Home Service Calls</p>
+    <p style="text-align: center;">Criminal Forensic Labs</p>
+    <p style="text-align: center;">911 Cell Phone Emergencies</p>
+    <p style="text-align: center;">American Pedophiles Adopting Children</p>
+    <p style="text-align: center;">Commercial Culture and Sexualized Children</p>
+    <p style="text-align: center;">Poisoned Playgrounds</p>
+    <p style="text-align: center;">Amusement Park Rides</p>
+    <p style="text-align: center;">Cell Phones and Auto Gas Station Pump Fires</p>
+    <p style="text-align: center;">Consumer “Haggling” Hints</p>
+    <p style="text-align: center;">Disaster Relief Charities</p>
+    <p style="text-align: center;">Elevator Service Repairs</p>
+    <p style="text-align: center;">Self Storage Facilities</p>
+    <p style="text-align: center;">Foreign Speaking Airline Pilots and Air Traffic Controllers</p>
+    <p style="text-align: center;">Auto Repair fraud</p>
+    <p style="text-align: center;">Food concerns</p>
+    <p style="text-align: center;">Health alerts</p>
+    <p style="text-align: center;">Home repair cons</p>
+    <p style="text-align: center;">Insurance ripoffs</p>
+    <p style="text-align: center;">Investing &amp; predatory lending</p>
+    <p style="text-align: center;">Real estate secrets</p>
+    <p style="text-align: center;">Sports doping</p>
+    <p style="text-align: center;">Tax gotchas</p>
+    <p style="text-align: center;">Travel scams</p>
+    <p style="text-align: center;">Too many topics to list. Too many ways for you to lose.</p>
+    <p style="text-align: center;">Be a Savvy Consumer. Keep this book with you. Never again be a victim.</p>
+    <p style="text-align: center;"></p>
+    <p style="text-align: center;"></p>
+    <br>
+    <br>
+    <br>
+    </div>
+                          </li>
+    
+                      </ul>
+                  </div>
+    
+              </div>
+          </div>
+      </div>
+    </div>
+  </div>
+    <!-- Header Navbar End -->
+  
+    <div id="pc">
+      <!-- Header Navbar Start -->
+  <style>
+    .panel-default > .panel-heading {
+        color: #333;
+        background-color: #f5f5f54d;
+        border-color: #ddd0;
+    }
+  </style>
+  <div class="header--nav bg-bluewood" id="pc">
+    <div class="container">
+        <!-- IF S_REGISTERED_USER -->
+        <!-- EVENT navbar_header_user_profile_prepend -->
+  
+        <div class="header-member-info clearfix">
+            <!-- IF S_NOTIFICATIONS_DISPLAY -->
+            <div class="dropdown header-member--notifications<!-- IF NOTIFICATIONS_COUNT --> has-unread<!-- ENDIF -->">
+                <a href="#" class="header-member-notifications--toggle" data-toggle="dropdown">
+                    <i class="fa fa-bell"></i>
+                    <!-- IF NOTIFICATIONS_COUNT eq '0' -->
+                    <!-- ELSE -->
+                    <small>{NOTIFICATIONS_COUNT}</small>
+                    <!-- ENDIF -->
+                </a>
+  
+                <div class="dropdown-menu">
+                    <div class="dropdown--header clearfix">
+                        <h4>Notifications<!-- IF NOTIFICATIONS_COUNT --><span class="count"> ({NOTIFICATIONS_COUNT})<!-- ENDIF --></span></h4>
+  
+                        <!-- IF NOTIFICATIONS_COUNT -->
+                        <a href="{U_MARK_ALL_NOTIFICATIONS}" data-ajax="notifications.mark_all" class="action mark-all pull-right"><i class="fa fa-check-square-o"></i></a>
+                        <!-- ENDIF -->
+  
+                        <a href="{U_NOTIFICATION_SETTINGS}" class="action pull-right"><i class="fa fa-cog"></i></a>
+                    </div>
+                    <div class="dropdown--body">
+                        <!-- IF not .notifications -->
+                        <p class="no-notification">{L_NO_NOTIFICATIONS}</p>
+                        <!-- ENDIF -->
+                        <!-- BEGIN notifications(0,2) -->
+                        <div class="dropdown-body--notification<!-- IF notifications.UNREAD --> is-unread<!-- ENDIF --> clearfix">
+                            <!-- IF notifications.URL -->
+                            <a class="notification-block clearfix" href="<!-- IF notifications.UNREAD -->{notifications.U_MARK_READ}" data-real-url="{notifications.URL}<!-- ELSE -->{notifications.URL}<!-- ENDIF -->">
+                                <!-- ENDIF -->
+  
+                                <!-- IF notifications.AVATAR -->
+                                {notifications.AVATAR}
+                                <!-- ELSE -->
+                                <img src="{T_THEME_PATH}/images/no-avatar.png" alt="" />
+                                <!-- ENDIF -->
+  
+                                <div class="dropdown-body-notification--text">
+                                    <p class="notification-title">{notifications.FORMATTED_TITLE}</p>
+                                    <!-- IF notifications.REFERENCE -->
+                                    <p class="notification-reference">{notifications.REFERENCE}</p>
+                                    <!-- ENDIF -->
+                                    <!-- IF notifications.FORUM -->
+                                    <p class="notification-forum">{notifications.FORUM}</p>
+                                    <!-- ENDIF -->
+                                    <!-- IF notifications.REASON -->
+                                    <p class="notification-reason">{notifications.REASON}</p>
+                                    <!-- ENDIF -->
+  
+                                    <p class="notification-time">{notifications.TIME}</p>
+                                </div>
+  
+                                <!-- IF notifications.URL -->
+                            </a>
+                            <!-- ENDIF -->
+                        </div>
+                        <!-- END notifications -->
+                        <a href="{U_VIEW_ALL_NOTIFICATIONS}" class="see-all">{L_SEE_ALL}</a>
+                    </div>
+                </div>
+            </div>
+            <!-- ENDIF -->
+  
+            <!-- IF S_DISPLAY_PM -->
+            <a href="{U_PRIVATEMSGS}" class="msg">
+                <i class="fa fa-envelope"></i>
+                <!-- IF PRIVATE_MESSAGE_COUNT eq '0' -->
+                <!-- ELSE -->
+                <small>{PRIVATE_MESSAGE_COUNT}</small>
+                <!-- ENDIF -->
+            </a>
+            <!-- ENDIF -->
+  
+            <div class="dropdown member-profile">
+                <a href="#" class="member-profile--toggle" data-toggle="dropdown">
+                    <!-- IF CURRENT_USER_AVATAR -->
+                    {CURRENT_USER_AVATAR}
+                    <!-- ELSE -->
+                    <img src="{T_THEME_PATH}/images/no-avatar.png" alt="" class="img-responsive" />
+                    <!-- ENDIF -->
+                    <span class="caret"></span>
+                </a>
+                <div class="dropdown-menu header-member-profile--info">
+                    <h4>{S_USERNAME}</h4>
+                    <ul>
+                        <li><a href="{U_PROFILE}"><i class="fa fm fa-dashboard"></i>{L_PROFILE}</a></li>
+                        <li><a href="{U_USER_PROFILE}"><i class="fa fm fa-user"></i>{L_READ_PROFILE}</a></li>
+                        <li><a href="{U_LOGIN_LOGOUT}"><i class="fa fa-flip-horizontal fm fa-sign-out"></i>{L_LOGIN_LOGOUT}</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+  
+        <!-- EVENT navbar_header_user_profile_append -->
+        <!-- ENDIF -->
+  
+        <!-- IF S_DISPLAY_SEARCH and not S_IN_SEARCH -->
+        <div class="header--search-bar<!-- IF not S_REGISTERED_USER --> logged-out<!-- ENDIF -->">
+            <form action="{U_SEARCH}" method="get">
+                <div class="input-group">
+                    <input type="text" name="keywords" class="form-control" placeholder="{L_SEARCH_MINI}">
+                    <span class="input-group-btn">
+                        <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                        <a href="{U_SEARCH}" class="btn btn-default"><i class="fa fa-gear"></i></a>
+                    </span>
+                </div>
+            </form>
+        </div>
+        <!-- ENDIF -->
+  
+        <ul class="header-nav--primary nav<!-- IF not S_REGISTERED_USER --> logged-out<!-- ENDIF -->">
+          
+  
+            
+  
+            <!-- IF U_ACP -->
+            <li class="header-nav-li3"> 
+                <a href="{U_ACP}"><i class="fa fm fa-gears"></i>{L_ACP_SHORT}</a>
+            </li>
+            <!-- ENDIF -->
+            <!-- IF U_MCP -->
+            <li class="header-nav-li4"><a href="{U_MCP}"><i class="fa fm fa-cog"></i>{L_MCP_SHORT}</a></li>
+            <!-- ENDIF -->
+            <li class="header-nav-li5">
+  
+  
+                    <a href="#pccollapseOne" data-toggle="collapse" class="accordion-toggle" data-parent="#accordion"><i class="fa fm fa-navicon"></i>{L_CATEGORIES}</a>
+               
+            <!-- //Close Panel Heading Wrapper -->
+            
+            <!-- Open Panel Collapse Items Wrapper -->
+            <div class="panel-collapse collapse" id="pccollapseOne">
+  
+                <!-- Open List Group for Internal Page Links -->
+                <div class="header-nav--tabpane tab-pane" id="tab2">
+                    <ul class="nav">
+                         <div class="panel-group" id="accordion">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+            <li><a href="#pcaa" data-toggle="collapse" class="accordion-toggle" data-parent="#accordion"><i class="fa fa-hand-o-right" aria-hidden="true"></i>commercial hype scams</a></li>
+        </div>
+        <div id="pcaa" class="panel-collapse collapse">
+          <div class="panel-body">
+            <p><a href="viewtopic.php?f=5&t=23647"><i class="fa fa-hand-o-right"></i> As Seen On TV Hype For Products</a></p>
+            <p><a href="viewtopic.php?f=5&t=22982"><i class="fa fa-hand-o-right"></i> Consumer Magazines And Journals</a></p>
+            <p><a href="viewtopic.php?f=5&t=43"><i class="fa fa-hand-o-right"></i> Deceptive Advertising Agencies & Audience Ratings</a></p>
+            <p><a href="viewtopic.php?f=5&t=42"><i class="fa fa-hand-o-right"></i> Advertising Logic And The Ethics Of Advertising</a></p>
+            <p><a href="viewtopic.php?f=5&t=41"><i class="fa fa-hand-o-right"></i> Hypercommercialism And Consumptive Consumer Behavior</a></p>
+            <p><a href="viewtopic.php?f=5&t=40"><i class="fa fa-hand-o-right"></i> Clinical Study Results And Claims For Products And Services</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+            <li>
+                <a href="#pcab" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion"><i class="fa fa-hand-o-right" aria-hidden="true"></i>Animal Rights</a></li>
+        </div>
+        <div id="pcab" class="panel-collapse collapse">
+          <div class="panel-body">
+            <p><a href="viewtopic.php?f=24&t=55"><i class="fa fa-hand-o-right"></i> WILD ANIMALS FOR HUMAN ENTERTAINMENT PURPOSES</a></p>
+            <p><a href="viewtopic.php?f=24&t=54"><i class="fa fa-hand-o-right"></i> Wild Animals Held In Captivity</a></p>
+            <p><a href="viewtopic.php?f=24&t=53"><i class="fa fa-hand-o-right"></i> Wildlife Conservation Groups</a></p>
+            <p><a href="/viewtopic.php?f=24&t=52"><i class="fa fa-hand-o-right"></i> Marine Wildlife Parks And Aquariums</a></p>
+            <p><a href="viewtopic.php?f=24&t=51"><i class="fa fa-hand-o-right"></i> Factory Pig Farming Atrocities Of Greed, Neglect And Inhumane Treatment</a></p>
+            <p><a href="viewtopic.php?f=24&t=50"><i class="fa fa-hand-o-right"></i> Korean Dog and Cat Meat Eaters</a></p>
+            <p><a href="viewtopic.php?f=24&t=49"><i class="fa fa-hand-o-right"></i> Hunting On National Wildlife Refuges</a></p>
+            <p><a href="viewtopic.php?f=24&t=48"><i class="fa fa-hand-o-right"></i> Factory Animal Farm Killers</a></p>
+            <p><a href="viewtopic.php?f=24&t=47"><i class="fa fa-hand-o-right"></i> Down, Silk And Wool Industries</a></p>
+            <p><a href="viewtopic.php?f=24&t=46"><i class="fa fa-hand-o-right"></i> Dog and Cat Animal Shelter Gas Chamber</a></p>
+            <p><a href="viewtopic.php?f=24&t=45"><i class="fa fa-hand-o-right"></i> Dolphins In Captivity</a></p>
+            <p><a href="viewtopic.php?f=24&t=44"><i class="fa fa-hand-o-right"></i> Discarded Sheep By The Wool Industry</a></p>
+            <p><a href="vviewtopic.php?f=24&t=39"><i class="fa fa-hand-o-right"></i> Discarded Or Stolen Pets and Animal Baiting</a></p>
+            <p><a href="viewtopic.php?f=24&t=38"><i class="fa fa-hand-o-right"></i> How Do You Think They Train Bears To Stand Up On Cue?</a></p>
+            <p><a href="viewtopic.php?f=24&t=36"><i class="fa fa-hand-o-right"></i> China Fur Farms Torture And Supply U.S.A And Canada With Fur</a></p>
+            <p><a href="viewtopic.php?f=24&t=35"><i class="fa fa-hand-o-right"></i> Commercial Whaling</a></p>
+            <p><a href="viewtopic.php?f=24&t=34"><i class="fa fa-hand-o-right"></i> Chimpanzees Used In Advertisements</a></p>
+            <p><a href="viewtopic.php?f=24&t=32"><i class="fa fa-hand-o-right"></i> Animal Testing Products</a></p>
+            <p><a href="viewtopic.php?f=24&t=30"><i class="fa fa-hand-o-right"></i> Animal Rights Laws and Reality</a></p>
+            <p><a href="viewtopic.php?f=24&t=29"><i class="fa fa-hand-o-right"></i> A Day In The Life Of A Research Animal</a></p>
+            <p><a href="viewtopic.php?f=24&t=28"><i class="fa fa-hand-o-right"></i> American Pets Sold To Meat-Eaters</a></p>
+            <p><a href="viewtopic.php?f=24&t=27"><i class="fa fa-hand-o-right"></i> A Day In The Life Of A Downed Farm Animal Going To Slaughter</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+            <li class=" "><a href="#pcac" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion"><i class="fa fa-hand-o-right" aria-hidden="true"></i>{L_Automotive}</a>
+        </div>
+        <div id="pcac" class="panel-collapse collapse">
+          <div class="panel-body">
+            <p><a href="viewtopic.php?f=25&t=24257"><i class="fa fa-hand-o-right"></i> Exploding Sunroofs On Cars</a></p>
+            <p><a href="viewtopic.php?f=25&t=59"><i class="fa fa-hand-o-right"></i> “Yo Yo” Car Financing</a></p>
+            <p><a href="viewtopic.php?f=25&t=57"><i class="fa fa-hand-o-right"></i> Beware Of MSRP Deals On Car Trade-In</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+            <li class=" "><a href="#pcad" class="accordion-toggle"  data-toggle="collapse" data-parent="#accordion"><i class="fa fa-hand-o-right" aria-hidden="true"></i>{L_Economy}</a>
+        </div>
+        <div id="pcad" class="panel-collapse collapse">
+          <div class="panel-body">
+            <p><a href="viewtopic.php?f=26&t=23568"><i class="fa fa-hand-o-right"></i> The Primary Reason Why America Lags Behind Asia In Productivity</a></p>
+            <p><a href="viewtopic.php?f=26&t=68"><i class="fa fa-hand-o-right"></i> Demise Of The U.S. Dollar</a></p>
+            <p><a href="viewtopic.php?f=26&t=67"><i class="fa fa-hand-o-right"></i> Warped Meanings Of Words</a></p>
+            <p><a href="viewtopic.php?f=26&t=66"><i class="fa fa-hand-o-right"></i> America’s Next Financial Crisis And Eventual Cashless Society</a></p>
+            <p><a href="viewtopic.php?f=26&t=65"><i class="fa fa-hand-o-right"></i> America And The World During The Next 30 Years</a></p>
+            <p><a href="viewtopic.php?f=26&t=64"><i class="fa fa-hand-o-right"></i> How To Predict The Stock Market</a></p>
+            <p><a href="viewtopic.php?f=26&t=63"><i class="fa fa-hand-o-right"></i> Identifying Ethically Corrupt Behavior</a></p>
+            <p><a href="viewtopic.php?f=26&t=62"><i class="fa fa-hand-o-right"></i> Guide To Financially Survive High Prices For Products & Services</a></p>
+            <p><a href="viewtopic.php?f=26&t=61"><i class="fa fa-hand-o-right"></i> Keynes Law Of Stock Market Illogic</a></p>
+            <p><a href="viewtopic.php?f=26&t=60"><i class="fa fa-hand-o-right"></i> How To Protect Yourself In Upcoming Public Debt Crisis</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+            <li class=" "><a href="#pcaf" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion"><i class="fa fa-hand-o-right" aria-hidden="true"></i>{L_Food}</a></li>
+        </div>
+        <div id="pcaf" class="panel-collapse collapse">
+          <div class="panel-body">
+            <p><a href="viewtopic.php?f=28&t=83"><i class="fa fa-hand-o-right"></i> Dolphin-Safe Labels On Tuna Cans</a></p>
+            <p><a href="viewtopic.php?f=28&t=82"><i class="fa fa-hand-o-right"></i> Think Twice About Buying Supermarket Meats</a></p>
+            <p><a href="viewtopic.php?f=28&t=80"><i class="fa fa-hand-o-right"></i> Bottled Water Or Tap Water?</a></p>
+            <p><a href="viewtopic.php?f=28&t=79"><i class="fa fa-hand-o-right"></i> Deceptive Chicken And Egg Package Label Claims</a></p>
+            <p><a href="viewtopic.php?f=28&t=78"><i class="fa fa-hand-o-right"></i> More On Deceptive Food Labels</a></p>
+            <p><a href="viewtopic.php?f=28&t=77"><i class="fa fa-hand-o-right"></i> The Truth About Some Food Labels</a></p>
+            <p><a href="viewtopic.php?f=28&t=76"><i class="fa fa-hand-o-right"></i> Antibiotics In Farm Animal Food</a></p>
+            <p><a href="viewtopic.php?f=28&t=75"><i class="fa fa-hand-o-right"></i> Meat-Eaters, The Planet And The True Cost Of Consumer Culture</a></p>
+            <p><a href="viewtopic.php?f=28&t=74"><i class="fa fa-hand-o-right"></i> Deceptive “Nutrition Facts” Labels On Food Packaging</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+            <li class=" "><a href="#pcag" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion"><i class="fa fa-hand-o-right" aria-hidden="true"></i>{L_Gambling}</a></li>
+        </div>
+        <div id="pcag" class="panel-collapse collapse">
+          <div class="panel-body">
+            <p><a href="viewtopic.php?f=29&t=85"><i class="fa fa-hand-o-right"></i>Gambling Streaks And Poker Faces</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+            <li class=" "><a href="#pcah" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion"><i class="fa fa-hand-o-right" aria-hidden="true"></i>{L_Government}</a>
+        </div>
+        <div id="pcah" class="panel-collapse collapse">
+          <div class="panel-body">
+            <p><a href="viewtopic.php?f=30&t=15&sid=7411b8c8e38a77e4806238ea82ca13d3"><i class="fa fa-hand-o-right"></i> Liberal President And Liberal Congress Do Not Want Full Employment</a></p>
+            <p><a href="viewtopic.php?f=30&t=14&sid=7411b8c8e38a77e4806238ea82ca13d3"><i class="fa fa-hand-o-right"></i> Congressional “Gag Rule”</a></p>
+            <p><a href="viewtopic.php?f=30&t=13&sid=7411b8c8e38a77e4806238ea82ca13d3"><i class="fa fa-hand-o-right"></i> Tax The Wealthy And The Death Of Politics</a></p>
+            <p><a href="viewtopic.php?f=30&t=12&sid=7411b8c8e38a77e4806238ea82ca13d3"><i class="fa fa-hand-o-right"></i> Unofficial History Of American Corporations</a></p>
+            <p><a href="viewtopic.php?f=30&t=11&sid=7411b8c8e38a77e4806238ea82ca13d3"><i class="fa fa-hand-o-right"></i> California…The Largest Insane Asylum In The USA!</a></p>
+            <p><a href="viewtopic.php?f=30&t=10&sid=7411b8c8e38a77e4806238ea82ca13d3"><i class="fa fa-hand-o-right"></i> Realistic Politics, Government, Banking, Jobs, Public Safety And Security</a></p>
+            <p><a href="viewtopic.php?f=30&t=9&sid=7411b8c8e38a77e4806238ea82ca13d3"><i class="fa fa-hand-o-right"></i> Commercial Whaling</a></p>
+            <p><a href="viewtopic.php?f=30&t=8&sid=7411b8c8e38a77e4806238ea82ca13d3"><i class="fa fa-hand-o-right"></i> Politicians And American Politics</a></p>
+            <p><a href="viewtopic.php?f=30&t=7&sid=7411b8c8e38a77e4806238ea82ca13d3"><i class="fa fa-hand-o-right"></i> Presidential Debates</a></p>
+            <p><a href="viewtopic.php?f=30&t=5&sid=7411b8c8e38a77e4806238ea82ca13d3"><i class="fa fa-hand-o-right"></i> Government Stealing Your Cash From Your Bank Account</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+            <li class=" "><a href="#pcai" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion"><i class="fa fa-hand-o-right" aria-hidden="true"></i>Law Crime and Justice</a></li>
+        </div>
+        <div id="pcai" class="panel-collapse collapse">
+          <div class="panel-body">
+            <p><a href="./viewtopic.php?f=31&t=23571"><i class="fa fa-hand-o-right"></i> Cohabitation Property Rights</a></p>
+            <p><a href="./viewtopic.php?f=31&t=23567"><i class="fa fa-hand-o-right"></i> Prevent-A-Foreclosure Attorney Services</a></p>
+            <p><a href="./viewtopic.php?f=31&t=23566"><i class="fa fa-hand-o-right"></i> Bullying In Schools</a></p>
+            <p><a href="./viewtopic.php?f=31&t=23564"><i class="fa fa-hand-o-right"></i> New Way To Vote To Change Washington Politics</a></p>
+            <p><a href="./viewtopic.php?f=31&t=23558"><i class="fa fa-hand-o-right"></i> Good and Bad Attorneys And Bill Padding</a></p>
+            <p><a href="./viewtopic.php?f=31&t=23553"><i class="fa fa-hand-o-right"></i> Gun Control And Anti-Gun Violence Programs Will Not Work</a></p>
+            <p><a href="./viewtopic.php?f=31&t=23549"><i class="fa fa-hand-o-right"></i> Gun Show Loophole And Arming Mexican Drug Cartels</a></p>
+            <p><a href="./viewtopic.php?f=31&t=23548"><i class="fa fa-hand-o-right"></i> When You Write Your Will Do Not Forget This!</a></p>
+            <p><a href="./viewtopic.php?f=31&t=23547"><i class="fa fa-hand-o-right"></i> Death Penalty Advocacy</a></p>
+            <p><a href="./viewtopic.php?f=31&t=23546"><i class="fa fa-hand-o-right"></i> Keynes Law Of Stock Market Illogic</a></p>
+            <p><a href="./viewtopic.php?f=31&t=23545"><i class="fa fa-hand-o-right"></i> Simple Way To Stop Backpack Bombings And Car Bombings</a></p>
+            <p><a href="./viewtopic.php?f=31&t=23544"><i class="fa fa-hand-o-right"></i> Cohabitation Property Rights</a></p>
+            <p><a href="./viewtopic.php?f=31&t=23543"><i class="fa fa-hand-o-right"></i> S.L.A.P.P., Frivolous And Class Action Lawsuits</a></p>
+            <p><a href="./viewtopic.php?f=31&t=23542"><i class="fa fa-hand-o-right"></i> Gun Laws, Corruption And Terrorists</a></p>
+            <p><a href="./viewtopic.php?f=31&t=23541"><i class="fa fa-hand-o-right"></i> Unofficial History Of American Corporations</a></p>
+            <p><a href="./viewtopic.php?f=31&t=23540"><i class="fa fa-hand-o-right"></i> Tax The Wealthy And The Death Of Politics</a></p>
+            <p><a href="./viewtopic.php?f=31&t=23539"><i class="fa fa-hand-o-right"></i> Small Claims Court Judgments</a></p>
+            <p><a href="./viewtopic.php?f=31&t=23537"><i class="fa fa-hand-o-right"></i> Leaderless Terrorism And Terrorist Acts</a></p>
+            <p><a href="./viewtopic.php?f=31&t=23537"><i class="fa fa-hand-o-right"></i> “Don’t Buck The Jack” Car Jacking, Purse Snatching & Muggings</a></p>
+            <p><a href="./viewtopic.php?f=31&t=23534"><i class="fa fa-hand-o-right"></i> How To Get A Cop Faster When You Call 911</a></p>
+            <p><a href="./viewtopic.php?f=31&t=23533"><i class="fa fa-hand-o-right"></i> Personal Injury Attorneys</a></p>
+            <p><a href="./viewtopic.php?f=31&t=23532"><i class="fa fa-hand-o-right"></i> Hiring An Attorney</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+            <li class=" "><a href="#pcaj" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion"><i class="fa fa-hand-o-right" aria-hidden="true"></i>{L_Medical}</a></li>
+        </div>
+        <div id="pcaj" class="panel-collapse collapse">
+          <div class="panel-body">
+            <p><a href="./viewtopic.php?f=32&t=115"><i class="fa fa-hand-o-right"></i> You Thought You Had Health Care Insurance Coverage</a></p>
+            <p><a href="./viewtopic.php?f=32&t=113"><i class="fa fa-hand-o-right"></i> When To Schedule Surgery</a></p>
+            <p><a href="./viewtopic.php?f=32&t=112"><i class="fa fa-hand-o-right"></i> Surgeon Attitude While Performing Surgery</a></p>
+            <p><a href="./viewtopic.php?f=32&t=110"><i class="fa fa-hand-o-right"></i> Summertime Hospital Surgery</a></p>
+            <p><a href="./viewtopic.php?f=32&t=109"><i class="fa fa-hand-o-right"></i> Risky Dental X-Rays</a></p>
+            <p><a href="./viewtopic.php?f=32&t=107"><i class="fa fa-hand-o-right"></i> Sudden Death Heart Attacks</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+            <li class=" "><a href="#pcak" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion"><i class="fa fa-hand-o-right" aria-hidden="true"></i>News Media</a></li>
+        </div>
+        <div id="pcak" class="panel-collapse collapse">
+          <div class="panel-body">
+            <p><a href="./viewtopic.php?f=33&t=124"><i class="fa fa-hand-o-right"></i>News Media Secret Statistical Language</a></p>
+            <p><a href="./viewtopic.php?f=33&t=123"><i class="fa fa-hand-o-right"></i> TV News Interviewers And Interviews</a></p>
+            <p><a href="./viewtopic.php?f=33&t=122"><i class="fa fa-hand-o-right"></i> Planted News Quotes And How To Respond To A Reporter’s Questions</a></p>
+            <p><a href="./viewtopic.php?f=33&t=120"><i class="fa fa-hand-o-right"></i> Selective Sampling</a></p>
+            <p><a href="./viewtopic.php?f=33&t=119"><i class="fa fa-hand-o-right"></i> What’s Really Wrong With The TV News Media</a></p>
+            <p><a href="./viewtopic.php?f=33&t=118"><i class="fa fa-hand-o-right"></i> The New Mainstream Journalism And News Media In America</a></p>
+            <p><a href="./viewtopic.php?f=33&t=116"><i class="fa fa-hand-o-right"></i> Why We Hate The News Media</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+            <li class=" "><a href="#pcal" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion"><i class="fa fa-hand-o-right" aria-hidden="true"></i>{L_Products}</a></li>
+        </div>
+        <div id="pcal" class="panel-collapse collapse">
+          <div class="panel-body">
+            <p><a href="./viewtopic.php?f=34&t=24256"><i class="fa fa-hand-o-right"></i>Getting Your Best Discounts Online</a></p>
+            <p><a href="./viewtopic.php?f=34&t=23565"><i class="fa fa-hand-o-right"></i> Buying Gold And Gold Coins From Advertisements</a></p>
+            <p><a href="./viewtopic.php?f=34&t=128"><i class="fa fa-hand-o-right"></i> Made In America Can Actually Mean Made In China</a></p>
+            <p><a href="./viewtopic.php?f=34&t=127"><i class="fa fa-hand-o-right"></i> What Does “Sell By” And “Use By” Dates Really Mean?</a></p>
+            <p><a href="./viewtopic.php?f=34&t=126"><i class="fa fa-hand-o-right"></i> What Does “Sell By” And “Use By” Dates Really Mean?What Does “Sell By” And “Use By” Dates Really Mean?a</a></p>
+            <p><a href="./viewtopic.php?f=34&t=125"><i class="fa fa-hand-o-right"></i> Negotiating A Deal On A Mattress</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+            <li class=" "><a href="#pcam" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion"><i class="fa fa-hand-o-right" aria-hidden="true"></i>{L_Science}</a></li>
+        </div>
+        <div id="pcam" class="panel-collapse collapse">
+          <div class="panel-body">
+            <p><a href="./viewtopic.php?f=35&t=137"><i class="fa fa-hand-o-right"></i> Statistical Truth Test</a></p>
+            <p><a href="./viewtopic.php?f=35&t=136"><i class="fa fa-hand-o-right"></i> False Random Samples</a></p>
+            <p><a href="./viewtopic.php?f=35&t=135"><i class="fa fa-hand-o-right"></i> “The Missing Link” From Monkey To Man</a></p>
+            <p><a href="./viewtopic.php?f=35&t=134"><i class="fa fa-hand-o-right"></i> Facts</a></p>
+            <p><a href="./viewtopic.php?f=35&t=133"><i class="fa fa-hand-o-right"></i> Scientists Betrayers Of Truth</a></p>
+            <p><a href="./viewtopic.php?f=35&t=132"><i class="fa fa-hand-o-right"></i> Animal Suffering In The Name Of Science</a></p>
+            <p><a href="./viewtopic.php?f=35&t=131"><i class="fa fa-hand-o-right"></i> Mysticism, Scientific Publishing And Myths Of Darwinism</a></p>
+            <p><a href="./viewtopic.php?f=35&t=130"><i class="fa fa-hand-o-right"></i> Secret Statistical Language And Statistics Lie And Liars Use Statistics</a></p>
+            <p><a href="./viewtopic.php?f=35&t=129"><i class="fa fa-hand-o-right"></i> The New Age Of Faith In Science</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+            <li class=" "><a href="#pcan" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion"><i class="fa fa-hand-o-right" aria-hidden="true"></i>{L_Services}</a></li>
+        </div>
+        <div id="pcan" class="panel-collapse collapse">
+          <div class="panel-body">
+            <p><a href="./viewtopic.php?f=36&t=23645"><i class="fa fa-hand-o-right"></i> Signing A Contract To Join A Church</a></p>
+            <p><a href="./viewtopic.php?f=36&t=23643"><i class="fa fa-hand-o-right"></i> Fundraising Charities</a></p>
+            <p><a href="./viewtopic.php?f=36&t=143"><i class="fa fa-hand-o-right"></i> Should You Contribute Money To Finance An Idea?</a></p>
+            <p><a href="./viewtopic.php?f=36&t=142"><i class="fa fa-hand-o-right"></i> The Big Business Of Funerals And Death Cares</a></p>
+            <p><a href="./viewtopic.php?f=36&t=141"><i class="fa fa-hand-o-right"></i> When You Write Your Will Do Not Forget This!</a></p>
+            <p><a href="./viewtopic.php?f=36&t=140"><i class="fa fa-hand-o-right"></i> TV Home Shopping Channels</a></p>
+            <p><a href="./viewtopic.php?f=36&t=139"><i class="fa fa-hand-o-right"></i> Pet Pedigrees</a></p>
+            <p><a href="./viewtopic.php?f=36&t=138"><i class="fa fa-hand-o-right"></i> Jewelry Switch</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+            <li class=" "><a class="accordion-toggle" href="#pcao" data-toggle="collapse" data-parent="#accordion"><i class="fa fa-hand-o-right" aria-hidden="true"></i>Society and Culture</a></li>
+        </div>
+        <div id="pcao" class="panel-collapse collapse">
+          <div class="panel-body">
+            <p><a href="./viewtopic.php?f=37&t=23646"><i class="fa fa-hand-o-right"></i>Identifying Ethically Corrupt Behavior</a></p>
+            <p><a href="./viewtopic.php?f=37&t=23644"><i class="fa fa-hand-o-right"></i> Stupidity</a></p>
+            <p><a href="./viewtopic.php?f=37&t=23569"><i class="fa fa-hand-o-right"></i> Culture Jamming And The American Commercial Consumer Culture</a></p>
+            <p><a href="./viewtopic.php?f=37&t=175"><i class="fa fa-hand-o-right"></i> Western Logic And “Fuzzy” Eastern Logic</a></p>
+            <p><a href="./viewtopic.php?f=37&t=174"><i class="fa fa-hand-o-right"></i> The Alphabet</a></p>
+            <p><a href="./viewtopic.php?f=37&t=173"><i class="fa fa-hand-o-right"></i> Those Who Rant And Rave</a></p>
+            <p><a href="./viewtopic.php?f=37&t=172"><i class="fa fa-hand-o-right"></i> Thinking In The Past</a></p>
+            <p><a href="./viewtopic.php?f=37&t=171"><i class="fa fa-hand-o-right"></i> Theories Of Knowledge</a></p>
+            <p><a href="./viewtopic.php?f=37&t=170"><i class="fa fa-hand-o-right"></i> Animal Protection Intellectualism</a></p>
+            <p><a href="./viewtopic.php?f=37&t=169"><i class="fa fa-hand-o-right"></i> Sub-Human Nature</a></p>
+            <p><a href="./viewtopic.php?f=37&t=168"><i class="fa fa-hand-o-right"></i> The American Dream And Progress</a></p>
+            <p><a href="./viewtopic.php?f=37&t=167"><i class="fa fa-hand-o-right"></i> Reality Creation</a></p>
+            <p><a href="./viewtopic.php?f=37&t=166"><i class="fa fa-hand-o-right"></i> Selfishness And Revolutionaries</a></p>
+            <p><a href="./viewtopic.php?f=37&t=165"><i class="fa fa-hand-o-right"></i> Spiritual Resistance, Activism And The Law</a></p>
+            <p><a href="./viewtopic.php?f=37&t=164"><i class="fa fa-hand-o-right"></i> Rational Thought And Reason</a></p>
+            <p><a href="./viewtopic.php?f=37&t=163"><i class="fa fa-hand-o-right"></i> In Your Face Quotes</a></p>
+            <p><a href="./viewtopic.php?f=37&t=162"><i class="fa fa-hand-o-right"></i> Public Ignorance And Leadership</a></p>
+            <p><a href="./viewtopic.php?f=37&t=161"><i class="fa fa-hand-o-right"></i> Radical Honesty</a></p>
+            <p><a href="./viewtopic.php?f=37&t=160"><i class="fa fa-hand-o-right"></i> Moral Decision Making</a></p>
+            <p><a href="./viewtopic.php?f=37&t=159"><i class="fa fa-hand-o-right"></i> Intoxication And The Psychedelic Mind</a></p>
+            <p><a href="./viewtopic.php?f=37&t=158"><i class="fa fa-hand-o-right"></i> Making A Fair Judgment</a></p>
+            <p><a href="./viewtopic.php?f=37&t=157"><i class="fa fa-hand-o-right"></i> Experience Used As An Argument</a></p>
+            <p><a href="./viewtopic.php?f=37&t=155"><i class="fa fa-hand-o-right"></i> Evolution Of Our Mind</a></p>
+            <p><a href="./viewtopic.php?f=37&t=154"><i class="fa fa-hand-o-right"></i> Example Or Exception</a></p>
+            <p><a href="./viewtopic.php?f=37&t=153"><i class="fa fa-hand-o-right"></i> “Rock” Logic And Political Bombast</a></p>
+            <p><a href="./viewtopic.php?f=37&t=152"><i class="fa fa-hand-o-right"></i> Where America’s Two Most Infamous Curse Words Come From ?</a></p>
+            <p><a href="./viewtopic.php?f=37&t=150"><i class="fa fa-hand-o-right"></i> Recency Bias In The World Of Psychology And Economics</a></p>
+            <p><a href="./viewtopic.php?f=37&t=148"><i class="fa fa-hand-o-right"></i> History, Truth, Reality And Logic</a></p>
+            <p><a href="./viewtopic.php?f=37&t=147"><i class="fa fa-hand-o-right"></i> 
+            Free Speech, Death Of Discourse And The New Tyranny In America</a></p>
+            <p><a href="./viewtopic.php?f=37&t=146"><i class="fa fa-hand-o-right"></i> Winning Trust To Influence People</a></p>
+            <p><a href="./viewtopic.php?f=37&t=145"><i class="fa fa-hand-o-right"></i> Mushrooms, History And Peace Of Mind</a></p>
+            <p><a href="./viewtopic.php?f=37&t=144"><i class="fa fa-hand-o-right"></i> The Future, The Year 3000 And Extinction</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+            <li class=" "><a class="accordion-toggle" href="#pcap" data-toggle="collapse" data-parent="#accordion"><i class="fa fa-hand-o-right" aria-hidden="true"></i>{L_Sports}</a></li>
+        </div>
+        <div id="pcap" class="panel-collapse collapse">
+          <div class="panel-body">
+            <p><a href="./viewtopic.php?f=38&t=183"><i class="fa fa-hand-o-right"></i> Instant Replays On TV</a></p>
+            <p><a href="./viewtopic.php?f=38&t=182"><i class="fa fa-hand-o-right"></i> Rigged Horse Racing</a></p>
+            <p><a href="./viewtopic.php?f=38&t=181"><i class="fa fa-hand-o-right"></i> Swimming Pool And Spa Drain Equipment</a></p>
+            <p><a href="./viewtopic.php?f=38&t=180"><i class="fa fa-hand-o-right"></i> Greyhound Racing And Greyhound Adoption Organizations</a></p>
+            <p><a href="./viewtopic.php?f=38&t=179"><i class="fa fa-hand-o-right"></i> Horse Mafia</a></p>
+            <p><a href="./viewtopic.php?f=38&t=177"><i class="fa fa-hand-o-right"></i> Exotic Wild Animal Canned Hunt Farms</a></p>
+            <p><a href="./viewtopic.php?f=38&t=176"><i class="fa fa-hand-o-right"></i> Sick And Dying Soccer Players</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+            <li class=" "><a class="accordion-toggle" href="#pcaq" data-toggle="collapse" data-parent="#accordion"><i class="fa fa-hand-o-right" aria-hidden="true"></i>The Environment</a></li>
+        </div>
+        <div id="pcaq" class="panel-collapse collapse">
+          <div class="panel-body">
+            <p><a href="./viewtopic.php?f=39&t=23563"><i class="fa fa-hand-o-right"></i> Techno-Slavery, Brain Hang And Commercial Consumption</a></p>
+            <p><a href="./viewtopic.php?f=39&t=23562"><i class="fa fa-hand-o-right"></i> Extinction Of Mankind And All Species</a></p>
+            <p><a href="./viewtopic.php?f=39&t=23561"><i class="fa fa-hand-o-right"></i> Democracy And Deconstruction Of Earth</a></p>
+            <p><a href="./viewtopic.php?f=39&t=23560"><i class="fa fa-hand-o-right"></i> The Earth's Revenge</a></p>
+            <p><a href="./viewtopic.php?f=39&t=23559"><i class="fa fa-hand-o-right"></i> Overfishing, By-Catch And Shark Attacks</a></p>
+            <p><a href="./viewtopic.php?f=39&t=23557"><i class="fa fa-hand-o-right"></i> Longline Fishing Weapons Of Destruction And Commercial Fishing</a></p>
+            <p><a href="./viewtopic.php?f=39&t=23556"><i class="fa fa-hand-o-right"></i> Government Sponsored Wild Animal Kills</a></p>
+            <p><a href="./viewtopic.php?f=39&t=23555"><i class="fa fa-hand-o-right"></i> Dolphin And Whale Slaughter Tourist Attraction</a></p>
+            <p><a href="./viewtopic.php?f=39&t=23554"><i class="fa fa-hand-o-right"></i> Commercial Whaling</a></p>
+            <p><a href="./viewtopic.php?f=39&t=23552"><i class="fa fa-hand-o-right"></i> Marijuana Cultivation And The Impact On The Environment</a></p>
+            <p><a href="./viewtopic.php?f=39&t=23551"><i class="fa fa-hand-o-right"></i> I Have A Dream For Facebook And The Next Big Thing In Social Networking</a></p>
+            <p><a href="./viewtopic.php?f=39&t=23550"><i class="fa fa-hand-o-right"></i> American Consumers Treated Like Lab Rats For Toxic Chemicals</a></p>
+            <p><a href="./viewtopic.php?f=39&t=23536"><i class="fa fa-hand-o-right"></i> The Future, The Year 3000 And Extinction</a></p>
+            <p><a href="./viewtopic.php?f=39&t=23535"><i class="fa fa-hand-o-right"></i> Meat-Eaters, the Planet and the True Cost of Consumer Culture</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+            <li class=" "><a href="#pcar" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion"><i class="fa fa-hand-o-right" aria-hidden="true"></i>{L_Travel}</a></li>
+          </h4>
+        </div>
+        <div id="pcar" class="panel-collapse collapse">
+          <div class="panel-body">
+            <p><a href="./viewtopic.php?f=40&t=196"><i class="fa fa-hand-o-right"></i> Beware Of Rental Car Companies</a></p>
+            <p><a href="./viewtopic.php?f=40&t=195"><i class="fa fa-hand-o-right"></i> Confessions By Airline Baggage Handlers</a></p>
+            <p><a href="./viewtopic.php?f=40&t=194"><i class="fa fa-hand-o-right"></i> Beware Of Hotel Room Safes</a></p>
+          </div>
+        </div>
+      </div> 
+    </div>
+                    </ul>
+                </div>
+                <!-- //Close List Group for Internal Page Links -->
+  
+            </div>
+            <!-- //Close Panel Collapse Items Wrapper -->
+  </li>
+           <li>                <a href="#pccollapseTwo" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion"><i class="fa fm fa-navicon"></i>Change Everything</a>
+  
+  <div class="panel-collapse collapse" id="pccollapseTwo">
+  
+                <!-- Open List Group for Internal Page Links -->
+                <div class="header-nav--tabpane tab-pane" id="tab3">
+                    <ul class="nav">
+                        <div class="panel-group" id="accordion1">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+            <li><a href="#pca1" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1"><i class="fa fa-hand-o-right" aria-hidden="true"></i>CHANGE THE ENVIRONMENT AND FUTURE OF PLANET</a></li>
+        </div>
+        <div id="pca1" class="panel-collapse collapse">
+          <div class="panel-body">
+            <p><a href="./viewtopic.php?f=42&t=29134"><i class="fa fa-hand-o-right"></i> Disposable Plastics, Dirty Coal And Electric Car Pollution</a></p>
+            <p><a href="./viewtopic.php?f=42&t=14755"><i class="fa fa-hand-o-right"></i> LONGLINE FISHING WEAPONS OF DESTRUCTION AND COMMERCIAL FISHING</a></p>
+            <p><a href="./viewtopic.php?f=42&t=14753"><i class="fa fa-hand-o-right"></i> EXTINCTION OF MANKIND AND ALL SPECIES</a></p>
+            <p><a href="./viewtopic.php?f=42&t=14752"><i class="fa fa-hand-o-right"></i> THE EARTH’S REVENGE</a></p>
+            <p><a href="./viewtopic.php?f=42&t=14751"><i class="fa fa-hand-o-right"></i> The Future, The Year 3000 And Extinction</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+            <li><a href="#pca2" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1"><i class="fa fa-hand-o-right" aria-hidden="true"></i>CHANGE SOCIETY AND CULTURE</a></li>
+        </div>
+        <div id="pca2" class="panel-collapse collapse">
+          <div class="panel-body">
+            <p><a href="./viewtopic.php?f=45&t=29143"><i class="fa fa-hand-o-right"></i> Observations By Independent Thinker Gore Vidal</a></p>
+            <p><a href="./viewtopic.php?f=45&t=29141"><i class="fa fa-hand-o-right"></i> The Political Correctness Movement</a></p>
+            <p><a href="./viewtopic.php?f=45&t=29140"><i class="fa fa-hand-o-right"></i> Hi-Tech Hijacked Your Mind: A Vulnerability In Human Psychology</a></p>
+            <p><a href="./viewtopic.php?f=45&t=29137"><i class="fa fa-hand-o-right"></i> What Your Mind Instinctively Begs For</a></p>
+            <p><a href="./viewtopic.php?f=45&t=29135"><i class="fa fa-hand-o-right"></i> Words Of Wisdom From World’s First Billionaire</a></p>
+    
+            <p><a href="./viewtopic.php?f=45&t=23966"><i class="fa fa-hand-o-right"></i> Threat Of Artificial Intelligence</a></p>
+            <p><a href="./viewtopic.php?f=45&t=14750"><i class="fa fa-hand-o-right"></i> I HAVE A DREAM FOR FACEBOOK AND THE NEXT BIG THING IN SOCIAL NETWORKING</a></p>
+            <p><a href="./viewtopic.php?f=45&t=14749"><i class="fa fa-hand-o-right"></i> TECHNO-SLAVERY, BRAIN HANG AND COMMERCIAL CONSUMPTION</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+            <li><a href="#a3" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1"><i class="fa fa-hand-o-right" aria-hidden="true"></i>CHANGE POLITICS</a></li>
+        </div>
+        <div id="a3" class="panel-collapse collapse">
+          <div class="panel-body">
+            <p><a href="./viewtopic.php?f=47&t=29147"><i class="fa fa-hand-o-right"></i> President Abe Lincoln, The Popular Vote, Slavery And Income Inequality</a></p>
+            <p><a href="./viewtopic.php?f=47&t=29139"><i class="fa fa-hand-o-right"></i> 2000 Years Ago They Predicted Democracy Could Not Survive</a></p>
+            <p><a href="./viewtopic.php?f=47&t=29136"><i class="fa fa-hand-o-right"></i> Political Parties, Populism And Honor</a></p>
+            <p><a href="./viewtopic.php?f=47&t=14746"><i class="fa fa-hand-o-right"></i> New Way To Vote To Change Washington Politics</a></p>
+    
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+            <li><a href="#pca4" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1"><i class="fa fa-hand-o-right" aria-hidden="true"></i>CHANGE LAW AND ORDER</a></li>
+        </div>
+        <div id="pca4" class="panel-collapse collapse">
+          <div class="panel-body">
+            <p><a href="./viewtopic.php?f=49&t=29138"><i class="fa fa-hand-o-right"></i> Do Not Sign “Confession Of Judgment” When Getting A Loan</a></p>
+            <p><a href="./viewtopic.php?f=49&t=14756"><i class="fa fa-hand-o-right"></i> GUN CONTROL AND ANTI-GUN VIOLENCE PROGRAMS WILL NOT WORK</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+            <li><a href="#pca5" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1"><i class="fa fa-hand-o-right"></i>CHANGE GOVERNMENT</a></li>
+        </div>
+        <div id="pca5" class="panel-collapse collapse">
+          <div class="panel-body">
+            <p><a href="./viewtopic.php?f=51&t=29146"><i class="fa fa-hand-o-right"></i> Government Regulation Of Social Media And Technology World Domination</a></p>
+            <p><a href="./viewtopic.php?f=51&t=29142"><i class="fa fa-hand-o-right"></i> The Poor Masses In America Vs. The Rich Elite And Economic Collapse</a></p>
+            <p><a href="./viewtopic.php?f=51&t=23960"><i class="fa fa-hand-o-right"></i> Dark Crimes Of The Deep State Politics Of Power</a></p>
+            <p><a href="./viewtopic.php?f=51&t=23959"><i class="fa fa-hand-o-right"></i> This $5 Trillion Time Bomb Will Devastate Americans</a></p>
+            <p><a href="./viewtopic.php?f=51&t=14748"><i class="fa fa-hand-o-right"></i> STEALING THE VOTES</a></p>
+    
+            <p><a href="./viewtopic.php?f=51&t=14747"><i class="fa fa-hand-o-right"></i> What Every US Citizen Should Know</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+            <li >
+                <a href="#pca6" title="{L_FAQ_EXPLAIN}" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1"><i class="fa fa-hand-o-right" aria-hidden="true"></i>CHANGE OTHER</a></li>
+          </h4>
+        </div>
+        <div id="pca6" class="panel-collapse collapse">
+          <div class="panel-body">
+            <p><a href="./viewtopic.php?f=53&t=29145"><i class="fa fa-hand-o-right"></i> Why Don’t News Media Journalists Ask Really Tough Questions?</a></p>
+            <p><a href="./viewtopic.php?f=53&t=29144"><i class="fa fa-hand-o-right"></i> Online Price Discrimination Charging More For Products Based On Who You Are</a></p>
+            <p><a href="./viewtopic.php?f=53&t=14757"><i class="fa fa-hand-o-right"></i> “DON’T BUCK THE JACK” CAR JACKING & PURSE SNATCHING</a></p>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+                        <li style="display:none;"><a href="{U_TEAM}"><i class="fa fm fa-users"></i>THE TEAM</a></li>
+                    </ul>
+                </div>
+                <!-- //Close List Group for Internal Page Links -->
+  
+            </div>
+  
+  </li>
+            <li class="header-nav-li7">
+                <a href="#pctab4" class="scroll-class" data-toggle="tab"><i class="fa fm fa-navicon"></i>ABOUT THE BOOK</a>
+            </li>
+            <li class="header-nav-li1" style="background: #797979"><a href="{U_ABOUT}"><i class="fa fm fa-cog"></i>ABOUT US</a></li>
+  <li class="header-nav-li1"><a href="./contactus.php"><i class="fa fm fa-cog"></i>CONTACT</a></li>
+        </ul>
+    </div>
+  
+    <div class="header-nav--tab">
+        <div class="container">
+            <div class="tab-content">
+                <div class="header-nav--tabpane tab-pane" id="tab1">
+                    <ul class="nav">
+                        <!-- EVENT navbar_header_quick_links_before -->
+  
+                        <!-- IF S_DISPLAY_SEARCH -->
+  <!--                         IF S_USER_LOGGED_IN 
+                        <li><a href="{U_SEARCH_NEW}"><i class="fa fm fa-folder-o"></i>{L_SEARCH_NEW}</a></li>
+                         ENDIF 
+                         IF S_REGISTERED_USER 
+                        <li><a href="{U_SEARCH_SELF}"><i class="fa fm fa-edit"></i>{L_SEARCH_SELF}</a></li>
+                         ENDIF 
+                         IF S_LOAD_UNREADS  
+                        <li><a href="{U_SEARCH_UNREAD}"><i class="fa fm fa-eye-slash"></i>{L_SEARCH_UNREAD}</a></li>
+                         ENDIF 
+                        <li><a href="{U_SEARCH_UNANSWERED}"><i class="fa fm fa-comment-o"></i>{L_SEARCH_UNANSWERED}</a></li>
+                        <li><a href="{U_SEARCH_ACTIVE_TOPICS}"><i class="fa fa-hand-o-right"></i>{L_SEARCH_ACTIVE_TOPICS}</a></li>
+                        <li><a href="{U_SEARCH}"><i class="fa fm fa-search"></i>{L_SEARCH}</a></li>
+                         ENDIF 
+  
+                        <li class="hidden-md hidden-lg IF SCRIPT_NAME eq 'faq'  active ENDIF ">
+                            <a href="{U_FAQ}" title="{L_FAQ_EXPLAIN}"><i class="fa fm fa-question-circle"></i>{L_FAQ}</a>
+                        </li>
+  
+                         IF U_TEAM 
+                        <li ><a href="{U_TEAM}"><i class="fa fm fa-users"></i>{L_THE_TEAM}</a></li>-->
+                        <!-- ENDIF -->
+  
+                        <!-- EVENT navbar_header_quick_links_after -->
+                    </ul>
+                </div>
+  
+                
+  
+  
+               
+  
+                <div class="header-nav--tabpane tab-pane" id="pctab4">
+                    <ul class="nav">
+                        <li>
+                            <div class="claim-text">
+                                Stop the Scams. Buy Your Book Now.<br />
+                                Whistleblowers Book Of 1001 Secrets...Consumer News You Can Use
+                            </div>
+                            <div id="scroll-destination">
+                            <img src="http://demo.digitaldreamstech.com/freeway/phpBB3/styles/forumus/theme/images/51ohG-f2vuL.jpg">
+                            </div>
+  
+                            <div class="book-text">
+                            <div>  Available for all major eBook readers:</div>
+                            <ul class="books-links">
+                                <li><a href="http://www.amazon.com/Whistleblowers-Book-1001-Secrets-ebook/dp/B004RPTEX8" target="_blank">Amazon Kindle</a><br></li>
+                                <li><a href="http://search.barnesandnoble.com/Whistleblowers-Book-of-1001-Secrets/Glenn-Cole/e/2940012242433" target="_blank">Barnes &amp; Noble Nook</a><br></li>
+                                <li><a href="http://ebookstore.sony.com/ebook/glenn-cole/whistleblowers-book-of-1001-secrets/_/R-400000000000000362424" target="_blank">Sony ebookstore</a><br></li>
+                                <li><a href="https://www.smashwords.com/books/view/34911" target="_blank">Smashwords</a> for Epub, LRF (Sony), Kindle, PDB, PDF, and more<br></li>
+                                <li><a href="http://itunes.apple.com/us/book/whistleblowers-book-1001-secrets/id428420017?mt=11&amp;ls=1" target="_blank">Apple iTunes/iBooks<br></a> </li>
+                            </ul>
+                          <br>
+  <br>
+  <br>
+  <p style="text-align: center;"></p>
+  <p style="text-align: center;"></p>
+  <p style="text-align: center;">Protect Yourself, Your Money &amp; Your Family from Con Artists and Scammers</p>
+  <p style="text-align: center;">Whistleblowers Book of 1001 Secrets: Consumer News You Can Use (Second Edition)</p>
+  <p style="text-align: center;">Insider Book tells you how to Protect Yourself and STOP THE SCAMS.</p>
+  <p style="text-align: center;">Covers over 1,000 SCAMS</p>
+  <p style="text-align: center;">CLEAR, EASY-to-understand</p>
+  <p style="text-align: center;">Sourced info, not just opinions</p>
+  <p style="text-align: center;">Alphabetical, easy-to-find info</p>
+  <p style="text-align: center;">Consumer SCAMS, Services CONS, Health, Home and Job RIPOFFS</p>
+  <p style="text-align: center;">STOP the SCAMS in:</p>
+  <p style="text-align: center;">More than 1001 Whistleblowers Secrets in all !</p>
+  <p style="text-align: center;">1986 NASA Challenger Disaster “Final Minutes Of Life” Cockpit Audio</p>
+  <p style="text-align: center;">Overfishing, Bycatch and Shark Attacks</p>
+  <p style="text-align: center;">Reality TV Game Show Deceptions</p>
+  <p style="text-align: center;">Stop The ScamsEarth on Edge</p>
+  <p style="text-align: center;">Pharmacy Technicians</p>
+  <p style="text-align: center;">Revolution of 1776 and the Next Revolution</p>
+  <p style="text-align: center;">Fitness Instructors</p>
+  <p style="text-align: center;">Exercise Myths</p>
+  <p style="text-align: center;">The Presidency, War and Calculated Chaos</p>
+  <p style="text-align: center;">Gambling Win Systems</p>
+  <p style="text-align: center;">Funeral Homes Stealing Body Parts for Re-Sale</p>
+  <p style="text-align: center;">Food Slander Laws</p>
+  <p style="text-align: center;">Insider Wall Street Stock Trading</p>
+  <p style="text-align: center;">Free Speech?</p>
+  <p style="text-align: center;">Hackers Cracking Car Key Codes</p>
+  <p style="text-align: center;">Saline Breast Implants</p>
+  <p style="text-align: center;">Surgery Code of Silence</p>
+  <p style="text-align: center;">Laser Surgery</p>
+  <p style="text-align: center;">Lasik Eye Surgery</p>
+  <p style="text-align: center;">Police Dirty Tricks</p>
+  <p style="text-align: center;">Boat Ownership</p>
+  <p style="text-align: center;">Crooked Veterinarians</p>
+  <p style="text-align: center;">TV News Managers and Management</p>
+  <p style="text-align: center;">TV Culture and Democracy</p>
+  <p style="text-align: center;">TV News Interviewers and Interviews</p>
+  <p style="text-align: center;">Toxic TV News Media in a Toxic Society</p>
+  <p style="text-align: center;">Myth of Objectivity in the News Media and Journalism</p>
+  <p style="text-align: center;">TV News “Exclusive” News Stories</p>
+  <p style="text-align: center;">Planted News Media Quotes and News Stories</p>
+  <p style="text-align: center;">TV News: the Unreality Industry</p>
+  <p style="text-align: center;">Myths of Darwinism</p>
+  <p style="text-align: center;">Death of Reality</p>
+  <p style="text-align: center;">The Human Brain</p>
+  <p style="text-align: center;">Scamming Yourself and the Illusion of Fact</p>
+  <p style="text-align: center;">Reality Creation</p>
+  <p style="text-align: center;">We’re being led like cows to slaughter</p>
+  <p style="text-align: center;">Myth of Sexual Peak</p>
+  <p style="text-align: center;">Theories of Knowledge</p>
+  <p style="text-align: center;">Truth in America</p>
+  <p style="text-align: center;">Thinking in the Past</p>
+  <p style="text-align: center;">Wicked People</p>
+  <p style="text-align: center;">Fake Board-Certified Physicians</p>
+  <p style="text-align: center;">Hospital Newborns</p>
+  <p style="text-align: center;">Medical Interns</p>
+  <p style="text-align: center;">Psychiatric Hospitals</p>
+  <p style="text-align: center;">Whale and Dolphin Laundering</p>
+  <p style="text-align: center;">Suicide Horse Races</p>
+  <p style="text-align: center;">Pet Cremations</p>
+  <p style="text-align: center;">Horse Mafia</p>
+  <p style="text-align: center;">Fishing Rodeos</p>
+  <p style="text-align: center;">Dolphins in Captivity</p>
+  <p style="text-align: center;">Circus Animal Abuse</p>
+  <p style="text-align: center;">Bear Baiting</p>
+  <p style="text-align: center;">Carriage Horse Rides</p>
+  <p style="text-align: center;">Commercial Trawler Fish Nets</p>
+  <p style="text-align: center;">Discarded and Stolen Pets and Animal Baiting</p>
+  <p style="text-align: center;">Buy Until You Die</p>
+  <p style="text-align: center;">Car Dealer Dirty Tricks</p>
+  <p style="text-align: center;">Expiration Dates for New Car Tires</p>
+  <p style="text-align: center;">Different Grades of Gas and Gas Stations</p>
+  <p style="text-align: center;">Imitation Replacement Auto Body Parts</p>
+  <p style="text-align: center;">Re-built and Re-sold Wrecked Cars</p>
+  <p style="text-align: center;">Nursing Home Sex Predators</p>
+  <p style="text-align: center;">Park and Rob Valets</p>
+  <p style="text-align: center;">Rape and Rape Investigations</p>
+  <p style="text-align: center;">Traffic Ticket Attorneys</p>
+  <p style="text-align: center;">Presidential Debates</p>
+  <p style="text-align: center;">Diplomatic Immunity</p>
+  <p style="text-align: center;">Critical Care Nurses</p>
+  <p style="text-align: center;">Emergency Room Medical Sub-Contractors</p>
+  <p style="text-align: center;">Congressional “Gag Rule”</p>
+  <p style="text-align: center;">Arbitration Clauses in Contracts</p>
+  <p style="text-align: center;">Insurance Sales Tactics</p>
+  <p style="text-align: center;">Home Remodeling Contractors</p>
+  <p style="text-align: center;">U.S. Government Withholding Tax</p>
+  <p style="text-align: center;">Forgotten Founders of America</p>
+  <p style="text-align: center;">The South Will Rise Again</p>
+  <p style="text-align: center;">Ambulance Medical Emergencies</p>
+  <p style="text-align: center;">Movie Theatre Popcorn</p>
+  <p style="text-align: center;">Street Food Vendors</p>
+  <p style="text-align: center;">U.S. Embassies</p>
+  <p style="text-align: center;">U.S. Federal Safety Standards</p>
+  <p style="text-align: center;">U.S. Meat Inspection and Inspectors</p>
+  <p style="text-align: center;">Light Beers</p>
+  <p style="text-align: center;">Juice Drink Frauds</p>
+  <p style="text-align: center;">Hamburger Hell</p>
+  <p style="text-align: center;">Grocery Store “Cons”</p>
+  <p style="text-align: center;">Distinguished College Professors</p>
+  <p style="text-align: center;">School Overcrowding</p>
+  <p style="text-align: center;">School Security Guards</p>
+  <p style="text-align: center;">Wall Street Investor Pitfalls</p>
+  <p style="text-align: center;">Helicopter Pilots</p>
+  <p style="text-align: center;">Commercial Airline Pilot Fatigue</p>
+  <p style="text-align: center;">Air Traffic Controllers and Drug Use</p>
+  <p style="text-align: center;">Your First Name Determines Your Success</p>
+  <p style="text-align: center;">Cruise Ship Crime</p>
+  <p style="text-align: center;">Tour Operators and Tour Bus Drivers</p>
+  <p style="text-align: center;">Unsafe Charter Buses</p>
+  <p style="text-align: center;">Parasailing Tourists</p>
+  <p style="text-align: center;">Female Models Targeted for Sex Slave Trade</p>
+  <p style="text-align: center;">Felons and Ex-Convicts doing In-Home Service Calls</p>
+  <p style="text-align: center;">Criminal Forensic Labs</p>
+  <p style="text-align: center;">911 Cell Phone Emergencies</p>
+  <p style="text-align: center;">American Pedophiles Adopting Children</p>
+  <p style="text-align: center;">Commercial Culture and Sexualized Children</p>
+  <p style="text-align: center;">Poisoned Playgrounds</p>
+  <p style="text-align: center;">Amusement Park Rides</p>
+  <p style="text-align: center;">Cell Phones and Auto Gas Station Pump Fires</p>
+  <p style="text-align: center;">Consumer “Haggling” Hints</p>
+  <p style="text-align: center;">Disaster Relief Charities</p>
+  <p style="text-align: center;">Elevator Service Repairs</p>
+  <p style="text-align: center;">Self Storage Facilities</p>
+  <p style="text-align: center;">Foreign Speaking Airline Pilots and Air Traffic Controllers</p>
+  <p style="text-align: center;">Auto Repair fraud</p>
+  <p style="text-align: center;">Food concerns</p>
+  <p style="text-align: center;">Health alerts</p>
+  <p style="text-align: center;">Home repair cons</p>
+  <p style="text-align: center;">Insurance ripoffs</p>
+  <p style="text-align: center;">Investing &amp; predatory lending</p>
+  <p style="text-align: center;">Real estate secrets</p>
+  <p style="text-align: center;">Sports doping</p>
+  <p style="text-align: center;">Tax gotchas</p>
+  <p style="text-align: center;">Travel scams</p>
+  <p style="text-align: center;">Too many topics to list. Too many ways for you to lose.</p>
+  <p style="text-align: center;">Be a Savvy Consumer. Keep this book with you. Never again be a victim.</p>
+  <p style="text-align: center;"></p>
+  <p style="text-align: center;"></p>
+  <br>
+  <br>
+  <br>
+  </div>
+                        </li>
+  
+                    </ul>
+                </div>
+  
+            </div>
+        </div>
+    </div>
+  </div>
+  <!-- Header Navbar End -->
+  
+    </div>
